@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    height: 100%;
+}
+header{
+    flex-basis: 15%;
+    min-height: 100%;
+    background: aqua;
+}
+main{
+    padding-left:15px ;
+}
