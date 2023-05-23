@@ -1,0 +1,23 @@
+Back office :
+S-Gestion des utilisateur
+M-Publications d'article
+I-Gestions des article
+I-Gestions produits
+M-ajout de produits
+S-Tableau des ventes
+M-publications évènement
+M-Gestions événements
+I-Gestion Commentaire
+
+PAGE PHP
+S-verification connexion
+S-Envoi de newsletter
+
+-Les logs
+
+Front :
+I-page connexion 
+S-inscription
+I-newsletter
+
+-evenement et inscription au evènement

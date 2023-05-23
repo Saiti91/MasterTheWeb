@@ -1,12 +1,34 @@
+html{
+    scroll-behavior: smooth;
+    color:white;
+    background-color: black;
+}
 body{
     display: flex;
-    height: 100%;
+    margin:0;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+}
+nav ul{
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+nav li{
+    background-color: #333333;
+    border-bottom: solid gray 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 header{
-    flex-basis: 15%;
-    min-height: 100%;
-    background: aqua;
+    width: 15%;
+    background-color: #222222;
+    min-height: 1500px;
 }
 main{
     padding-left:15px ;
+    width: 80%;
 }
