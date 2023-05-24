@@ -1,34 +1,62 @@
 html{
-    scroll-behavior: smooth;
-    color:white;
-    background-color: black;
+    color :white;
 }
 body{
     display: flex;
-    margin:0;
-}
-nav a{
-    text-decoration: none;
-    color: white;
-}
-nav ul{
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-nav li{
-    background-color: #333333;
-    border-bottom: solid gray 2px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-header{
-    width: 15%;
-    background-color: #222222;
-    min-height: 1500px;
+    height: 100vh;
+    background-color: black;
 }
 main{
-    padding-left:15px ;
-    width: 80%;
+    padding-left: 30px ;
+    padding-right: 30px ;
+    padding-top: 20px;
+    flex-basis: 80%;
+}
+header{
+    flex-basis: 20%;
+    padding-top: 20px;
+}
+header h1{
+    text-align: center;
+}
+nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    text-align: center;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+nav li:hover{
+    background-color: #333333;
+}
+form{
+    display: flex;
+    padding: 20px;
+}
+form > input{
+    flex-basis: 7.5%;
+    height: 40px;
+    align-self: flex-end;
+}
+form .select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-basis: 90%;
+}
+form .label1{
+    flex-wrap: wrap;
+}
+form .label2{
+    flex-wrap: wrap;
+}
+form .label3{
+    flex-wrap: wrap;
+}
+main table{
+    padding: 20px;
 }

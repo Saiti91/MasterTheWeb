@@ -4,70 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" >
+    <link type="text/css" href="style.css?t=<?php echo time(); ?>" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
     <title>Sells Sheet</title>
 </head>
-<body>
-    <?php
-        include 'includes/header.html';
-    ?>
+<body class="bg-dark text-bg-dark">
+    <header class="bg-secondary">
+        <?php
+            include 'includes/header.html';
+        ?>
+    </header>
     <main>
         <h1>Sells Sheet</h1>
-<!--        --><?php
-//
-//            //include 'includes/Bdd_load.php';
-//            try{
-//                $bdd = new PDO('mysql:host=localhost;port=8889;dbname=masterthewebtest','root','root',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-//            }
-//            catch(Exception $e){
-//                die('Erreur: '.$e->getMessage());
-//            }
-//        function date(){
-//            if($_POST['date']="les 3 derniers mois")
-//            {
-//                $_POST['date']=strtotime("-3 Months");
-//            }
-//            if($_POST['date']="les 6 derniers mois")
-//            {
-//                $_POST['date']=strtotime("-6 Months");
-//            }
-//            if($_POST['date']="les 9 derniers mois")
-//            {
-//                $_POST['date']=strtotime("-9 Months");
-//            }
-//            else
-//            {
-//                $_POST['date']=strtotime("-12 Months");
-//            }
-//        }
-//
-//        ?>
+    <?php
+
+            //include 'includes/Bdd_load.php';
+            try{
+                $bdd = new PDO('mysql:host=localhost;port=3306;dbname=masterthewebtest','root','root',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+            }
+            catch(Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        function choixDate(){
+            if($_POST['date']="les 3 derniers mois")
+            {
+                $_POST['date']=strtotime("-3 Months");
+            }
+            if($_POST['date']="les 6 derniers mois")
+            {
+                $_POST['date']=strtotime("-6 Months");
+            }
+            if($_POST['date']="les 9 derniers mois")
+            {
+                $_POST['date']=strtotime("-9 Months");
+            }
+            else
+            {
+                $_POST['date']=strtotime("-12 Months");
+            }
+        }
+
+        ?>
             <form action="Sell_Sheet.php" method="post">
-                <select name="date" id="buy_date">
+                <div class="select">
+                <div class="label1">
+                <label class="form-label" for="buy_date" id="1">Période :</label>
+                <select class="form-select" name="date" id="buy_date">
 
                     <option>les 3 derniers mois</option>
                     <option>les 6 derniers mois</option>
                     <option>les 9 derniers mois</option>
                     <option>l'année derniere</option>
                 </select>
-
-                <select name="user" id="user">
+                </div>
+                    <div class="label2">
+                <label class="form-label" for="user" id="2">Utilisateurs :</label>
+                <select class="form-select" name="user" id="user">
 
                     <option>Tous les utilisateurs</option>
                     <option></option>
                     <option></option>
                     <option></option>
                 </select>
-                <select name="produit" id="produit">
+                    </div>
+                        <div class="label3">
+                <label class="form-label" for="user" id="3">Produit :</label>
+                <select class="form-select"  name="produit" id="produit">
 
                     <option>Casquette</option>
                     <option>T-shirts</option>
                     <option>Tasses</option>
                     <option>Echarpes</option>
                 </select>
-                <input type="submit"  value="Filtrer">
+                        </div>
+                </div>
+                <input class="btn btn-default bg-light" type="submit"  value="Filtrer">
             </form>
-            <table>
+
           <div>
 <!---->
 <!--                <p>-->
@@ -140,47 +154,41 @@
 <!---->
                 </div>
 
+        <table class="table table-success table-striped">
+<?php
+
+                $q='SELECT * FROM commande';
+                $req = $bdd-> prepare($q);
+                $req->execute();
+                $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
 
+                choixDate();
+                if(!empty($_POST['date']) && !empty($_POST['user']) && !empty($_POST['produit']) ){
+                    $q='SELECT commande_id,Time,Article,Status, client_id FROM Commande WHERE Time>=? AND Article = ? ORDER BY commande_id DESC ';
+                    $req = $bdd-> prepare($q);
+                    $req->execute([$_POST['date'],$_POST['produit']]);
+                    $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                }
 
-
-
-
-
-
-
-
-
-
-<!--            --><?php
-//
-//                $q='SELECT commande_id,Time,Article,Status, client_id FROM Commande';
-//                $req = $bdd-> prepare($q);
-//                $req->execute();
-//                $donnees = $req->fetchAll();
-//
-//
-//                date();
-//                if(!empty($_POST['date']) && !empty($_POST['user']) && !empty($_POST['produit']) ){
-//                    $q='SELECT commande_id,Time,Article,Status, client_id FROM Commande WHERE Time>=? AND Article = ? ORDER BY commande_id DESC ';
-//                    $req = $bdd-> prepare($q);
-//                    $req->execute([$_POST['date'],$_POST['produit']]);
-//                    $donnees = $req->fetchAll();
-//                }
-//
-//                foreach($donnees As $index => $value){
-//
-//                    echo '<tr>';
-//                    echo '<td> '.$donnees[$index]['commande_id'].' </td>';
-//                    echo '<td> '.$donnees[$index]['Time'].' </td>';
-//                    echo '<td> '.$donnees[$index]['Article'].' </td>';
-//                    echo '<td> '.$donnees[$index]['Status'].' </td>';
-//                    echo '<td> '.$donnees[$index]['client-id'].' </td>';
-//                    echo '</tr>';
-//
-//                }
-//            ?>
-<!--</table>-->
+                ?>
+                <tr>
+                    <th>Commande ID</th>
+                    <th>Horodatage</th>
+                    <th>Produit</th>
+                    <th>Status</th>
+                    <th>User ID</th>
+                </tr>
+            <?php
+                foreach($donnees As $index => $value){
+                    echo '<tr>';
+                    foreach ($value As $i => $valeur){
+                        echo '<td>'.$valeur.'</td>';
+                    }
+                    echo '</tr>';
+                }
+            ?>
+        </table>
     </main>
     <footer>
 
