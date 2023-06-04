@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2e124b3-3011-4619-82fd-ecf8484cd029" name="Changes" comment="" />
+    <list default="true" id="e2e124b3-3011-4619-82fd-ecf8484cd029" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +45,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -83,6 +85,7 @@
       <workItem from="1684935927861" duration="3490000" />
       <workItem from="1684950178928" duration="4223000" />
       <workItem from="1685870268189" duration="11000" />
+      <workItem from="1685871476991" duration="179000" />
     </task>
     <servers />
   </component>
