@@ -6,8 +6,9 @@
     </div>
     <hr>
 
-    <div class="footer-bottom">
-        <p>Copyright &copy; 2023 HOLOMUSIC </p>
+    <divclass
+    ="footer-bottom">
+    <p>Copyright &copy; <?php echo date("Y") ?> HOLOMUSIC </p>
 
     </div>
 </footer>
