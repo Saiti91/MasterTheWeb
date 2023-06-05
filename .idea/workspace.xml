@@ -24,6 +24,9 @@
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectId" id="2PuZFQxaPOqzI8aauiUIOTMFFPR" />
   <component name="ProjectViewState">
@@ -96,6 +99,7 @@
       <workItem from="1685598893671" duration="2093000" />
       <workItem from="1685601023322" duration="43000" />
       <workItem from="1685601087753" duration="57000" />
+      <workItem from="1685969352152" duration="650000" />
     </task>
     <servers />
   </component>
