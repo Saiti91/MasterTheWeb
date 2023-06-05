@@ -18,6 +18,7 @@ main {
 header {
     flex-basis: 20%;
     padding-top: 20px;
+    
 }
 
 header h1 {

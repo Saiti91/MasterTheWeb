@@ -1,4 +1,6 @@
-<?php include 'includes/header_backoffice.php' ?>
+<?php
+$titre = 'Sells Sheet';
+include '../includes/header_backoffice.php' ?>
 
 <main>
     <h1>Sells Sheet</h1>
@@ -23,7 +25,7 @@
         $_POST['statu'] = "%";
     }
     ?>
-    <form action="Sell_Sheet.php" method="post" class="formselect">
+    <form style="padding-bottom: 10px" action="Sell_Sheet.php" method="post" class="formselect">
         <div class="select">
             <div class="label1">
                 <label class="form-label" for="buy_date" id="1"> Période : </label>
@@ -85,7 +87,10 @@
         if (empty($_POST['suser'])) {
             $_POST['suser'] = '%';
         }
-        $q = 'SELECT * FROM Commande WHERE Time>= :time AND client_id LIKE :user AND Article LIKE :article AND Status LIKE :statu ORDER BY commande_id DESC ';
+        $q = 'SELECT commande.id,commande.date,produit.Description,commande.Status, user.pseudo FROM Commande INNER JOIN produit_commande ON
+        commande.id = produit_commande.Commande_id INNER JOIN user ON commande.User_idUser = user.idUser INNER JOIN produit ON
+        produit.idProduit = produit_Commande.Produit_idProduit WHERE commande.date >= :time AND user.pseudo LIKE :user AND
+        produit_commande.Produit_idProduit LIKE :article AND commande.Status LIKE :statu ORDER BY commande.id DESC LIMIT 10 ';
         $req = $bdd->prepare($q);
         $req->execute(['time' => $_POST['date'],
             'user' => $_POST['suser'],
