@@ -18,9 +18,7 @@
 
         <div class="category">
             <div id="c">
-                <a href="article.html#classical" class="btn rounded-pill"
-                >Classical</a
-                >
+                <a href="article.html#classical" class="btn rounded-pill">Classical</a>
             </div>
 
             <div id="c">
