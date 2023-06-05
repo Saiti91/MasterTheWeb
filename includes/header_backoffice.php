@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
             integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
             crossorigin="anonymous"></script>
-    <link type="text/css" href="style.css" rel="stylesheet">
+    <link type="text/css" href="CSS/style.css" rel="stylesheet">
     <title>Users Management</title>
 </head>
 <body class="bg-dark text-bg-dark">
