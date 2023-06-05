@@ -1,4 +1,12 @@
 <?php include 'includes/header_index.php'; ?>
+<?php //include 'bdd.php'
+try {
+    $bdd = new PDO('mysql:host=localhost;port=3306;dbname=masterthewebpa', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (Exception $e) {
+    die('Erreur: ' . $e->getMessage());
+}
+
+?>
     <main>
         <section>
             <div id="slider">
@@ -16,120 +24,42 @@
             </div>
 
             <div class="category">
-                <div id="c">
-                    <a href="article.html#classical" class="btn rounded-pill">Classical</a>
-                </div>
-
-                <div id="c">
-                    <a href="article.html#country" class="btn rounded-pill">Country</a>
-                </div>
-
-                <div id="c">
-                    <a href="article.html#jazz" class="btn rounded-pill">Jazz</a>
-                </div>
-
-                <div id="c">
-                    <a href="article.html#pop" class="btn rounded-pill">Pop</a>
-                </div>
-
-                <div id="c">
-                    <a href="article.html#metal" class="btn rounded-pill">Rock</a>
-                </div>
+                <?php
+                $q = 'SELECT nom FROM categorie LIMIT 4';
+                $req = $bdd->prepare($q);
+                $req->execute();
+                $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($donnees as $index => $value) {
+                    echo '
+                    <div id="c">
+                        <a href="#" class="btn rounded-pill">' . $value['nom'] . '</a>
+                    </div>';
+                }
+                ?>
             </div>
 
             <div class="products-container">
-                <div class="box">
-                    <img class="image" src="asset\Dua lip.jpg" alt="image"/>
-                    <p id="d">july 2002</p>
-                    <h2 id="title">Dua lipa the star of the moment.</h2>
-                    <p id="description">
-                        The star who is making a hit right now with her best hit of the
-                        century released in 2022 this summer.
-                    </p>
+                <?php
+                $q = 'SELECT * FROM article LIMIT 4';
+                $req = $bdd->prepare($q);
+                $req->execute();
+                $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($donnees as $index => $value) {
+                    echo ' 
+                    <div class="box">
+                    <img class="image" src="' . $value['image'] . '" alt="image"/>
+                    <p id="d">' . $value['horodatage'] . '</p>
+                    <h2 id="title">' . $value['titre'] . '</h2>
+                    <p id="description">' . $value['text'] . '</p>
                     <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
+                        <a href="#" target="_blank" class="btn rounded-pill"
+                    >Read More</a
+                    >
                     </div>
-                </div>
+                    </div>';
+                }
+                ?>
 
-                <div class="box">
-                    <img class="image" src="asset\bg mendes.jpg" alt="image"/>
-                    <p id="d">jun 2022</p>
-                    <h2 id="title">Shawn Mendes the new born.</h2>
-                    <p id="description">
-                        The star who is making a hit right now with her best hit of the
-                        century released in 2022 this summer.
-                    </p>
-                    <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img class="image" src="asset\Angèle.jpg" alt="image"/>
-                    <p id="d">october 2023</p>
-                    <h2 id="title">Angel the French star of the moment</h2>
-                    <p id="description">
-                        The star who is making a hit right now with her best hit of the
-                        century released in 2022 this summer.
-                    </p>
-                    <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img class="image" src="asset/marilyne5.jpg" alt="image"/>
-                    <p id="d">Mai 2022</p>
-                    <h2 id="title">Marilyn Monroe: The Woman Behind the Myth"</h2>
-                    <p id="description">
-                        Marilyn Monroe was an actress remains an emblematic figure of
-                        popular culture, the unforgatable star.
-                    </p>
-                    <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
-                    </div>
-                </div>
-                <div class="box">
-                    <img class="image" src="asset/Elvis Presley.jpg" alt="image"/>
-                    <p id="d">september 2023</p>
-                    <h2 id="title">Elvis Presley: The Man, the Music, the Legend</h2>
-                    <p id="description">
-                        Elvis became a cultural phenomenon, revolutionizing popular music
-                        and rock and roll artists.
-                    </p>
-                    <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
-                    </div>
-                </div>
-                <div class="box">
-                    <img
-                            class="image"
-                            src="asset/Madonna (illuminati symbolism).jpg"
-                            alt="image"
-                    />
-                    <p id="d">july 2022</p>
-                    <h2 id="title">Madonna</h2>
-                    <p id="description">
-                        Madonna is an American singer, songwriter, actress, and
-                        businesswoman who has achieved massive success throughout her
-                        career.
-                    </p>
-                    <div class="content">
-                        <a href="article.html" target="_blank" class="btn rounded-pill"
-                        >Read More</a
-                        >
-                    </div>
-                </div>
             </div>
         </section>
         <section class="end-products">
@@ -143,24 +73,22 @@
         <section>
             <h1 id="titre">Visit Our Store</h1>
             <section class="produits">
-                <div class="card">
-                    <div class="card-image img-1"></div>
-                    <h2>The Weekend Sweat<br/>31.99 €</h2>
+                <?php
+                $q = 'SELECT * FROM produit LIMIT 3';
+                $req = $bdd->prepare($q);
+                $req->execute();
+                $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($donnees as $index => $value) {
+                    echo '
+                    <div class="card">
+                    <div class="card-image img-' . ($index + 1) . '"></div>
+                    <h2>' . $value['Description'] . '<br/>' . $value['prix'] . '€</h2>
                     <a href="shop.html">Buy now</a>
-                </div>
-
-                <div class="card">
-                    <div class="card-image img-2"></div>
-                    <h2>Ariana Phone Case <br/>18.90 €</h2>
-                    <a href="shop.html">Buy now</a>
-                </div>
-
-                <div class="card">
-                    <div class="card-image img-3"></div>
-                    <h2>Shawn Mendes Cap<br/>25.99 €</h2>
-
-                    <a href="shop.html">Buy now</a>
-                </div>
+                    </div>
+                    ';
+                }
+                ?>
+                
             </section>
 
             <a href="shop.html" id="acheter">Shop at our store</a>
