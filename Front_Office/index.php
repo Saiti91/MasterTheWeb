@@ -1,4 +1,4 @@
-<?php include 'includes/header_index.php'; ?>
+<?php include '../includes/header_index.php'; ?>
 <?php //include 'bdd.php'
 try {
     $bdd = new PDO('mysql:host=localhost;port=3306;dbname=masterthewebpa', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -88,7 +88,7 @@ try {
                     ';
                 }
                 ?>
-                
+
             </section>
 
             <a href="shop.html" id="acheter">Shop at our store</a>
@@ -106,4 +106,4 @@ try {
         </section>
     </main>
 
-<?php include 'includes/footer.php' ?>
+<?php include '../includes/footer.php' ?>
