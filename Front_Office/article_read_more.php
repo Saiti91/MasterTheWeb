@@ -7,7 +7,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // relier les deux tables
     $query = 'SELECT Article.*, User.username
           FROM Article
-          INNER JOIN User ON Article.User_id = User.id
+          INNER JOIN User ON Article.User_id = User.idUser
           WHERE Article.id = ?';
 
 

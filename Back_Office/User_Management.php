@@ -56,7 +56,7 @@ include '../includes/header_backoffice.php'; ?>
         } elseif (!empty($_POST['suser'])) {
             $_POST['suser'] .= '%';
         }
-        $q = 'SELECT id,Inscription_date,username,email,Status FROM User WHERE Inscription_date>= :time AND username LIKE :pseudo';
+        $q = 'SELECT idUser,Inscription_date,username,email,Status FROM User WHERE Inscription_date>= :time AND username LIKE :pseudo';
         $req = $bdd->prepare($q);
         $req->execute(['time' => $_POST['date'], 'pseudo' => $_POST['suser']]);
         $donnees = $req->fetchAll(PDO::FETCH_ASSOC);

@@ -85,7 +85,7 @@ include '../includes/header_backoffice.php' ?>
             $_POST['suser'] = '%';
         }
         $q = 'SELECT Order.id,Order.date,Products.Description,Order.Status, User.username FROM Order INNER JOIN Products_Order ON
-        Order.id = Products_Order.Order_id INNER JOIN User ON Order.User_id = User.id INNER JOIN produit ON
+        Order.id = Products_Order.Order_id INNER JOIN User ON Order.User_id = User.idUser INNER JOIN produit ON
         Products.id = Products_Order.Produit_id WHERE Order.date >= :time AND User.username LIKE :user AND
         Products_Order.Products_id LIKE :Article AND Order.Status LIKE :statu ORDER BY Order.id DESC LIMIT 10 ';
         $req = $bdd->prepare($q);

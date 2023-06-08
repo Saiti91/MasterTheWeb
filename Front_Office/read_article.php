@@ -3,7 +3,7 @@ require_once '../includes/connexion_bdd.php';
 
 $articles = $bdd->query('SELECT Article.*, User.username
           FROM Article
-          INNER JOIN User ON Article.User_id = User.id
+          INNER JOIN User ON Article.User_id = User.idUser
           ORDER BY Article.date_of_publ DESC, Article.Category_id');
 
 

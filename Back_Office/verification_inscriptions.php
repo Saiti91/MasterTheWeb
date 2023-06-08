@@ -25,7 +25,7 @@ if (strlen($_POST['mdp']) < 6 || strlen($_POST['mdp']) > 20) {
 include '../includes/connexion_bdd.php';
 
 
-$q = 'SELECT id,username,firstname,birthdate FROM User WHERE email = ?';
+$q = 'SELECT idUser,username,firstname,birthdate FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
 $results = $req->fetchAll();

@@ -15,7 +15,7 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
 include '../includes/connexion_bdd.php';
 
-$q = 'SELECT id FROM User WHERE email = ? AND password = ?';
+$q = 'SELECT idUser FROM User WHERE email = ? AND password = ?';
 $req = $bdd->prepare($q);
 $email = ($_POST['email']);
 $mdp = hash('sha256', ($_POST['mdp']));
