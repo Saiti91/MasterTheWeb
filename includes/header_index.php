@@ -44,7 +44,7 @@
                         <a class="btn btn-danger" href="#"><?php
                             echo 'Login';
                             include '../Back_Office/verification.php';
-                            echo 'Deconnexion';
+
                             ?>
                         </a>
                     </li>
