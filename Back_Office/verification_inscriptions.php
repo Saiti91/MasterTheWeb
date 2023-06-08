@@ -4,7 +4,7 @@ if (
     !isset($_POST['email']) || empty($_POST['email']) ||
     !isset($_POST['mdp']) || empty($_POST['mdp']) ||
     !isset($_POST['username']) || empty($_POST['username']) ||
-    !isset($_POST['fistname']) || empty($_POST['fistname']) ||
+    !isset($_POST['firstname']) || empty($_POST['firstname']) ||
     !isset($_POST['date_of_birth']) || empty($_POST['date_of_birth'])
 ) {
     header('location: ../Front_Office/inscription.php?message=You must fill all fields!');
@@ -25,7 +25,7 @@ if (strlen($_POST['mdp']) < 6 || strlen($_POST['mdp']) > 20) {
 include '../includes/connexion_bdd.php';
 
 
-$q = 'SELECT id,username,fistname,date_of_birth FROM users WHERE email = ?';
+$q = 'SELECT id,username,firstname,birthdate FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
 $results = $req->fetchAll();
@@ -36,11 +36,11 @@ if (!empty($results)) {
     exit;
 }
 
-$q = 'INSERT INTO users (username,fistname,date_of_birth,email,mdp) VALUES(?,?,?,?,?)'; //Requete
+$q = 'INSERT INTO User (username,firstname,birthdate,email,mdp) VALUES(?,?,?,?,?)'; //Requete
 $req = $bdd->prepare($q); //Préparation de la requete
 $results = $req->execute([
     htmlspecialchars($_POST['username']),
-    htmlspecialchars($_POST['fistname']),
+    htmlspecialchars($_POST['firstname']),
     htmlspecialchars($_POST['date_of_birth']),
     htmlspecialchars($_POST['email']),
     hash('sha256', ($_POST['mdp']))

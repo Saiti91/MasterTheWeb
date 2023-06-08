@@ -11,18 +11,18 @@ require_once '../includes/connexion_bdd.php';
 
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = htmlspecialchars($_GET['search']);
-    $query = 'SELECT id, title, user_id, date_of_publ, category, image FROM article WHERE title LIKE "%' . $search . '%"  OR body LIKE "%' . $search . '%" ORDER BY id DESC';
+    $query = 'SELECT id, title, User_id, date_of_publ, category, image FROM Article WHERE title LIKE "%' . $search . '%"  OR body LIKE "%' . $search . '%" ORDER BY id DESC';
 
 } elseif (isset($_GET['category']) && !empty($_GET['category'])) {
     $category = htmlspecialchars($_GET['category']);
-    $query = 'SELECT id, title, user_id, date_of_publ, category, image FROM article WHERE category = "' . $category . '" ORDER BY id DESC';
+    $query = 'SELECT id, title, User_id, date_of_publ, category, image FROM Article WHERE category = "' . $category . '" ORDER BY id DESC';
 
 } elseif (isset($_GET['recent'])) {
     $threeMonthsAgo = date('Y-m-d', strtotime('-3 months'));
-    $query = 'SELECT id, title, user_id, date_of_publ, category, image FROM article WHERE date_of_publ >= "' . $threeMonthsAgo . '" ORDER BY id DESC';
+    $query = 'SELECT id, title, User_id, date_of_publ, category, image FROM Article WHERE date_of_publ >= "' . $threeMonthsAgo . '" ORDER BY id DESC';
 
 } else {
-    $query = 'SELECT id, title, user_id, date_of_publ, category, image FROM article ORDER BY id DESC';
+    $query = 'SELECT id, title, User_id, date_of_publ, category, image FROM Article ORDER BY id DESC';
 }
 
 $result = $bdd->query($query);
@@ -33,8 +33,8 @@ if (!$result) {
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $get_id = htmlspecialchars($_GET['id']);
-    // require_once 'connexion_bdd.php';
-    $deleteQuery = 'DELETE FROM article WHERE id =?';
+    // require_once '../includes/connexion_bdd.php';
+    $deleteQuery = 'DELETE FROM Article WHERE id =?';
     $deleteStmt = $bdd->prepare($deleteQuery);
     $deleteStmt->execute(array($get_id));
     $message = "Article deleted successfully!";

@@ -28,6 +28,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2PuZFQxaPOqzI8aauiUIOTMFFPR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -111,7 +114,8 @@
       <workItem from="1686210940449" duration="7486000" />
       <workItem from="1686225668802" duration="1234000" />
       <workItem from="1686231307608" duration="585000" />
-      <workItem from="1686232270758" duration="2518000" />
+      <workItem from="1686232270758" duration="3092000" />
+      <workItem from="1686237116423" duration="2171000" />
     </task>
     <servers />
   </component>

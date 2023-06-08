@@ -12,7 +12,7 @@ if (isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['newmdp']) && 
     if ($password == $newPassword) {
         $password = hash('sha256', $password);
         /* echo '"password" est le même que "newPassword"<br>'; */
-        $resetPassword = $bdd->prepare(" UPDATE users SET mdp = :mdp WHERE email = :email");
+        $resetPassword = $bdd->prepare(" UPDATE User SET password = :mdp WHERE email = :email");
         $resetPassword->execute(array("mdp" => $password,
             "email" => $email)); // on modifie le PWD de la bdd par le nouveau PWD entré
         /* echo 'le nouveau mot de passe à été changé<br>'; */

@@ -17,7 +17,7 @@ include '../includes/header_backoffice.php'
         <tr>
             <th>#ID</th>
             <th>Artist name</th>
-            <th>Discription</th>
+            <th>description</th>
             <th>Date_of_event</th>
             <th>Place</th>
             <th>Url</th>
@@ -29,14 +29,14 @@ include '../includes/header_backoffice.php'
         <tbody>
         <?php
         require_once '../includes/connexion_bdd.php';
-        $bdd = $pdo->query('SELECT * FROM events')->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = $bdd->query('SELECT * FROM Event')->fetchAll(PDO::FETCH_ASSOC);
         foreach ($bdd as $events) {
             ?>
 
             <tr>
                 <td><?php echo $events['id'] ?></td>
                 <td><?php echo $events['name'] ?></td>
-                <td><?php echo $events['discription'] ?></td>
+                <td><?php echo $events['description'] ?></td>
                 <td><?php echo $events['date'] ?></td>
                 <td><?php echo $events['place'] ?></td>
                 <td><?php echo $events['url'] ?></td>

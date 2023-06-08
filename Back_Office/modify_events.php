@@ -8,35 +8,35 @@ include '../includes/header_backoffice.php'
     <?php
     require_once '../includes/connexion_bdd.php';
     $id = $_GET['id'];
-    $sqlState = $pdo->prepare('SELECT * FROM events WHERE id=?');
+    $sqlState = $bdd->prepare('SELECT * FROM Event WHERE id=?');
     $sqlState->execute([$id]);
     $event = $sqlState->fetch(PDO::FETCH_ASSOC);
     if (isset($_POST['modify'])) {
         $name = $_POST['name'];
-        $discription = $_POST['discription'];
+        $description = $_POST['description'];
         $date = $_POST['date'];
         $place = $_POST['place'];
         $url = $_POST['url'];
         $image = $_POST['image'];
 
 
-        if (!empty($name) && !empty($discription)) {
-            $sqlState = $pdo->prepare('UPDATE  events 
+        if (!empty($name) && !empty($description)) {
+            $sqlState = $bdd->prepare('UPDATE  Event 
                                              SET name = ? ,
-                                             discription = ?,
+                                             description = ?,
                                              date = ?,
                                              place = ?,
                                              url = ?,
                                              image = ?
                                              WHERE id = ?;
                                                 ');
-            $sqlState->execute([$name, $discription, $date, $place, $url, $image, $id]);
+            $sqlState->execute([$name, $description, $date, $place, $url, $image, $id]);
             header('location: list_events.php');
             exit;
         } else {
             ?>
             <div class="alert alert-danger" role="alert">
-                the name of the artist,discription and the image
+                the name of the artist,description and the image
             </div>
             <?php
         }
@@ -52,8 +52,8 @@ include '../includes/header_backoffice.php'
         <label class="form">artist name</label>
         <input type="text" class="form-control custom" name="name" value="<?php echo $event['name'] ?>">
 
-        <label class="form">Discription</label>
-        <textarea class="form-control custom" name="discription"><?php echo $event['discription'] ?></textarea>
+        <label class="form">description</label>
+        <textarea class="form-control custom" name="description"><?php echo $event['description'] ?></textarea>
 
         <label class="form">date</label>
         <input type="date" class="form-control custom" name="date" value="<?php echo $event['date'] ?>">

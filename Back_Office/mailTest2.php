@@ -30,7 +30,7 @@ try {
     $mail->setFrom('derradji.ines@bessah.com', 'HOLOMUSIC');
 
     require_once '../includes/connexion_bdd.php';
-    $q = 'SELECT id,email,username,fistname, date_of_birth FROM users WHERE email=?';
+    $q = 'SELECT id,email,username,firstname, birthdate FROM User WHERE email=?';
     $req = $bdd->prepare($q);
     $req->execute([$_POST['email']]);
     if ($req->rowCount() > 0) {

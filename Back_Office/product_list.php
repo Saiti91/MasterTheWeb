@@ -28,7 +28,7 @@ include '../includes/header_backoffice.php'
         <tbody>
         <?php
         require_once '../includes/connexion_bdd.php';
-        $bdd = $pdo->query('SELECT * FROM products')->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = $bdd->query('SELECT * FROM Products')->fetchAll(PDO::FETCH_ASSOC);
         foreach ($bdd as $products) {
             ?>
 

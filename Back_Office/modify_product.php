@@ -8,7 +8,7 @@ include '../includes/header_backoffice.php'
     <?php
     require_once '../includes/connexion_bdd.php';
     $id = $_GET['id'];
-    $sqlState = $pdo->prepare('SELECT * FROM products WHERE id=?');
+    $sqlState = $bdd->prepare('SELECT * FROM Products WHERE id=?');
     $sqlState->execute([$id]);
     $product = $sqlState->fetch(PDO::FETCH_ASSOC);
     if (isset($_POST['modify'])) {
@@ -18,7 +18,7 @@ include '../includes/header_backoffice.php'
         $image = $_POST['image'];
 
         if (!empty($name) && !empty($price)) {
-            $sqlState = $pdo->prepare('UPDATE  products 
+            $sqlState = $bdd->prepare('UPDATE  Products 
                                              SET name = ? ,
                                              price = ?,
                                              discount = ?,

@@ -50,8 +50,8 @@ include '../includes/header_backoffice.php'
 
             if (!empty($name) && !empty($price) && !empty($image)) {
                 require_once '../includes/connexion_bdd.php';
-                $sqlState = $pdo->prepare('INSERT INTO products(name,price,discount,image) VALUES(?,?,?,?)');
-                $sqlState->execute([$name, $price, $discount, $image]);
+                $sqlState = $bdd->prepare('INSERT INTO Products(name,price/*,discount*/,image) VALUES(?,?,?,?)');
+                $sqlState->execute([$name, $price/*, $discount*/, $image]);
                 ?>
 
                 <div class="alert alert-success" role="alert">

@@ -5,16 +5,14 @@ include '../includes/header_backoffice.php'
 ?>
 
 <div class="container">
-
     <h2>Add New event</h2>
     <?php
     if (isset($_POST['add'])) {
         $name = $_POST['name'];
-        $discription = $_POST['discription'];
+        $description = $_POST['description'];
         $date = $_POST['date'];
         $place = $_POST['place'];
         $url = $_POST['url'];
-
         //upload images
         $image = $_FILES['image']['name'];
         $img_size = $_FILES['image']['size'];
@@ -44,16 +42,13 @@ include '../includes/header_backoffice.php'
                         You can't upload files of this type
                     </div>
                     <?php
-
                 }
             }
         }
-
-
-        if (!empty($name) && !empty($discription) && !empty($image)) {
+        if (!empty($name) && !empty($description) && !empty($image)) {
             require_once '../includes/connexion_bdd.php';
-            $res = $pdo->prepare('INSERT INTO events(name,date,place,discription,url,image) VALUES(?,?,?,?,?,?)');
-            $res->execute([$name, $date, $place, $discription, $url, $image]);
+            $res = $bdd->prepare('INSERT INTO Events(name,date,place,description,url,image) VALUES(?,?,?,?,?,?)');
+            $res->execute([$name, $date, $place, $description, $url, $image]);
             ?>
 
             <div class="alert alert-success" role="alert">
@@ -63,35 +58,26 @@ include '../includes/header_backoffice.php'
         } else {
             ?>
             <div class="alert alert-danger" role="alert">
-                the name of the artist, the discription, image are necessary
+                the name of the artist, the description, image are necessary
             </div>
             <?php
         }
     }
     ?>
-
     <form method="POST" enctype="multipart/form-data">
         <label class="form">artist name</label>
         <input type="text" class="form-control custom" name="name">
-
-        <label class="form">Discription</label>
-        <textarea class="form-control custom" name="discription"></textarea>
-
+        <label class="form">description</label>
+        <textarea class="form-control custom" name="description"></textarea>
         <label class="form">date of the event</label>
         <input type="date" class="form-control custom" name="date">
-
         <label class="form">place</label>
         <input type="text" class="form-control custom" value=" " name="place">
-
         <label class="form">url</label>
         <textarea class="form-control custom" value=" " name="url"></textarea>
-
         <label class="form">Image</label>
         <input type="file" class="form-control custom" name="image">
-
         <input type="submit" value="add event" class="btn btn-custom my-2" name="add">
-
-
     </form>
 </div>
 </body>

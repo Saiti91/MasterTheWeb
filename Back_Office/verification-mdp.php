@@ -7,7 +7,7 @@ if (isset($_POST['email'])) {
         header('location:forgot-mdp.php?message=Invalid Email');
         exit;
     } else {
-        $q = 'SELECT id,username,fistname,date_of_birth FROM users WHERE email = ?';
+        $q = 'SELECT id,username,firstname,birthdate FROM User WHERE email = ?';
         $req = $bdd->prepare($q);
         $req->execute([$_POST['email']]);
         $results = $req->fetchAll();

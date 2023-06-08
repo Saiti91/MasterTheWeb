@@ -25,7 +25,7 @@ try {
 
             <div class="category">
                 <?php
-                $q = 'SELECT nom FROM categorie LIMIT 4';
+                $q = 'SELECT name FROM Category LIMIT 4';
                 $req = $bdd->prepare($q);
                 $req->execute();
                 $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ try {
 
             <div class="products-container">
                 <?php
-                $q = 'SELECT * FROM article LIMIT 4';
+                $q = 'SELECT * FROM Article LIMIT 4';
                 $req = $bdd->prepare($q);
                 $req->execute();
                 $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -74,7 +74,7 @@ try {
             <h1 id="titre">Visit Our Store</h1>
             <section class="produits">
                 <?php
-                $q = 'SELECT * FROM produit LIMIT 3';
+                $q = 'SELECT * FROM Products LIMIT 3';
                 $req = $bdd->prepare($q);
                 $req->execute();
                 $donnees = $req->fetchAll(PDO::FETCH_ASSOC);

@@ -84,14 +84,14 @@ include '../includes/header_backoffice.php' ?>
         if (empty($_POST['suser'])) {
             $_POST['suser'] = '%';
         }
-        $q = 'SELECT commande.id,commande.date,produit.Description,commande.Status, user.pseudo FROM Commande INNER JOIN produit_commande ON
-        commande.id = produit_commande.Commande_id INNER JOIN user ON commande.User_idUser = user.idUser INNER JOIN produit ON
-        produit.id = produit_Commande.Produit_idProduit WHERE commande.date >= :time AND user.pseudo LIKE :user AND
-        produit_commande.Produit_idProduit LIKE :article AND commande.Status LIKE :statu ORDER BY commande.id DESC LIMIT 10 ';
+        $q = 'SELECT Order.id,Order.date,Products.Description,Order.Status, User.username FROM Order INNER JOIN Products_Order ON
+        Order.id = Products_Order.Order_id INNER JOIN User ON Order.User_id = User.id INNER JOIN produit ON
+        Products.id = Products_Order.Produit_id WHERE Order.date >= :time AND User.username LIKE :user AND
+        Products_Order.Products_id LIKE :Article AND Order.Status LIKE :statu ORDER BY Order.id DESC LIMIT 10 ';
         $req = $bdd->prepare($q);
         $req->execute(['time' => $_POST['date'],
             'user' => $_POST['suser'],
-            'article' => $_POST['produit'],
+            'Article' => $_POST['produit'],
             'statu' => $_POST['statu']]);
         $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
         ?>

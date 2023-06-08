@@ -12,7 +12,7 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
 include '../includes/connexion_bdd.php';
 
-$q = 'SELECT * FROM users WHERE email = ?';
+$q = 'SELECT * FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
 $results = $req->fetchAll();
@@ -25,7 +25,7 @@ if (!$results) {
 } else {
 
 
-    $q = 'INSERT INTO newsletter (email, date_of_ins) VALUES(?, NOW())'; // Requête
+    $q = 'INSERT INTO Newsletter (email, Inscription_date) VALUES(?, NOW())'; // Requête
     $req = $bdd->prepare($q); // Préparation de la requête
     $results = $req->execute([
         htmlspecialchars($_POST['email'])
@@ -55,7 +55,7 @@ try {
 
     $mail->setFrom('derradji.ines@bessah.com', 'HOLOMUSIC');
 
-    $q = 'SELECT * FROM newsletter WHERE email = ?';
+    $q = 'SELECT * FROM Newsletter WHERE email = ?';
     $req = $bdd->prepare($q);
     $req->execute([$_POST['email']]);
     $results = $req->fetchAll();
