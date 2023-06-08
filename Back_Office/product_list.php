@@ -1,13 +1,18 @@
 <?php
-$link = '../CSS/style.css';
-$titre = 'Products List';
+$titre = 'Products';
+$link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <div class="container">
-    <h2>Products</h2>
-    <a href="add_products.php" class="btn-btn-primary-add">Add New Product</a>
-    <table class="table">
+    <div class="d-md-flex justify-content-between align-items-center my-5">
+        <h2 class="mb-3 mb-md-0>Products">Products</h2>
+        <div class="order-md-2 mt-3 mt-md-0">
+            <a href="add_products.php" class="btn btn-custom">Add New Product</a>
+        </div>
+    </div>
 
+
+    <table class="table table-striped table-hover">
         <thead>
         <tr>-
             <th>#ID</th>
@@ -35,7 +40,7 @@ include '../includes/header_backoffice.php'
                 <td><?php echo $products['date_of_publication'] ?></td>
                 <td><?php echo $products['image'] ?></td>
                 <td>
-                    <a href="modify_product.php?id=<?php echo $products['id'] ?>" class="btn btn-primary">Modify</a>
+                    <a href="modify_product.php?id=<?php echo $products['id'] ?>" class="btn btn-info">Modify</a>
                     <a href="delete_product.php?id=<?php echo $products['id'] ?>"
                        onclick="return confirm('Do you really want to delete <?php echo $products['name'] ?>');"
                        class="btn btn-danger">Delete</a>

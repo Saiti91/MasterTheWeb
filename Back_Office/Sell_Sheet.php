@@ -1,5 +1,5 @@
 <?php
-$link = '../CSS/style.css';
+$link = '../CSS/style_s.css';
 $titre = 'Sells Sheet';
 include '../includes/header_backoffice.php' ?>
 

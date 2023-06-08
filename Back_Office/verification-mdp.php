@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connexion_bdd.php';
+require_once '../includes/connexion_bdd.php';
 if (isset($_POST['email'])) {
     $email = htmlspecialchars($_POST['email']);
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {

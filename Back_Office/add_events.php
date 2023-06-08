@@ -1,7 +1,9 @@
 <?php
-$link = '../CSS/style_back_officeM.css';
 $titre = 'Add Events';
-include '../includes/header_backoffice.php' ?>
+$link = '../CSS/style_back_officeM.css';
+include '../includes/header_backoffice.php'
+?>
+
 <div class="container">
 
     <h2>Add New event</h2>
@@ -12,12 +14,45 @@ include '../includes/header_backoffice.php' ?>
         $date = $_POST['date'];
         $place = $_POST['place'];
         $url = $_POST['url'];
-        $image = $_POST['image'];
+
+        //upload images
+        $image = $_FILES['image']['name'];
+        $img_size = $_FILES['image']['size'];
+        $tmp_name = $_FILES['image']['tmp_name'];
+        $error = $_FILES['image']['error'];
+
+        if ($error === 0) {
+            $maxSize = 2 * 1024 * 1024;
+            if ($img_size > $maxSize) {
+                ?>
+                <div class="alert alert-danger" role="alert">
+                    Sorry, your file is too large
+                </div>
+                <?php
+            } else {
+                $img_ex = pathinfo($image, PATHINFO_EXTENSION);
+                $img_ex_lc = strtolower($img_ex);
+                $allowed_exs = array("jpg", "jpeg", "png", "gif");
+
+                if (in_array($img_ex_lc, $allowed_exs)) {
+                    $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                    $img_upload_path = 'uploads/' . $new_img_name;
+                    move_uploaded_file($tmp_name, $img_upload_path);
+                } else {
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        You can't upload files of this type
+                    </div>
+                    <?php
+
+                }
+            }
+        }
 
 
-        if (!empty($name) && !empty($discription)) {
+        if (!empty($name) && !empty($discription) && !empty($image)) {
             require_once '../includes/connexion_bdd.php';
-            $res = $bdd->prepare('INSERT INTO evenement(name,Horodatage,place,description,url,image) VALUES(?,?,?,?,?,?)');
+            $res = $pdo->prepare('INSERT INTO events(name,date,place,discription,url,image) VALUES(?,?,?,?,?,?)');
             $res->execute([$name, $date, $place, $discription, $url, $image]);
             ?>
 
@@ -28,33 +63,33 @@ include '../includes/header_backoffice.php' ?>
         } else {
             ?>
             <div class="alert alert-danger" role="alert">
-                the name of the artist and the discription are necessary
+                the name of the artist, the discription, image are necessary
             </div>
             <?php
         }
     }
     ?>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label class="form">artist name</label>
-        <input type="text" class="form-control" name="name">
+        <input type="text" class="form-control custom" name="name">
 
         <label class="form">Discription</label>
-        <textarea class="form-control" name="discription"></textarea>
+        <textarea class="form-control custom" name="discription"></textarea>
 
         <label class="form">date of the event</label>
-        <input type="date" class="form-control" name="date">
+        <input type="date" class="form-control custom" name="date">
 
         <label class="form">place</label>
-        <input type="text" class="form-control" name="place">
+        <input type="text" class="form-control custom" value=" " name="place">
 
         <label class="form">url</label>
-        <textarea class="form-control" name="url"></textarea>
+        <textarea class="form-control custom" value=" " name="url"></textarea>
 
         <label class="form">Image</label>
-        <input type="file" class="form-control" name="image">
+        <input type="file" class="form-control custom" name="image">
 
-        <input type="submit" value="add event" class="btn-btn-primary my-2" name="add">
+        <input type="submit" value="add event" class="btn btn-custom my-2" name="add">
 
 
     </form>

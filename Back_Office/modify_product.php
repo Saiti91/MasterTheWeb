@@ -1,6 +1,6 @@
 <?php
-$link = '';
 $titre = 'Modify products';
+$link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <div class="container py-2">
@@ -8,7 +8,7 @@ include '../includes/header_backoffice.php'
     <?php
     require_once '../includes/connexion_bdd.php';
     $id = $_GET['id'];
-    $sqlState = $bdd->prepare('SELECT * FROM products WHERE id=?');
+    $sqlState = $pdo->prepare('SELECT * FROM products WHERE id=?');
     $sqlState->execute([$id]);
     $product = $sqlState->fetch(PDO::FETCH_ASSOC);
     if (isset($_POST['modify'])) {
@@ -59,7 +59,7 @@ include '../includes/header_backoffice.php'
         <label class="form-label">Image</label>
         <input type="file" class="form-control" name="image">
 
-        <input type="submit" value="modify" class="btn btn-primary my-2" name="modify">
+        <input type="submit" value="modify" class="btn btn-custom my-2" name="modify">
 
 
     </form>

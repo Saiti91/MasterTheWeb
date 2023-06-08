@@ -7,7 +7,7 @@ if (!$isAdmin) {
     exit;
 }
 
-include '../includes/connexion_bdd.php';
+require_once '../includes/connexion_bdd.php';
 
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = htmlspecialchars($_GET['search']);

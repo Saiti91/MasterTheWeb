@@ -1,11 +1,16 @@
 <?php
-$titre = 'Event';
-$link = '../CSS/style.css';
+$titre = 'Events';
+$link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <div class="container">
-    <h2>Events</h2>
-    <a href="add_events.php" class="btn-btn-primary-add">Add New Event</a>
+    <div class="d-md-flex justify-content-between align-items-center my-5">
+        <h2 class="mb-3 mb-md-0">Event</h2>
+
+        <div class="order-md-2 mt-3 mt-md-0">
+            <a href="add_events.php" class="btn btn-custom">Add New Event</a>
+        </div>
+    </div>
     <table class="table table-striped table-hover">
 
         <thead>
@@ -15,28 +20,29 @@ include '../includes/header_backoffice.php'
             <th>Discription</th>
             <th>Date_of_event</th>
             <th>Place</th>
-            <th>url</th>
-            <th>image</th>
+            <th>Url</th>
+            <th>Image</th>
+            <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
         <?php
         require_once '../includes/connexion_bdd.php';
-        $bdd = $bdd->query('SELECT * FROM evenement')->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = $pdo->query('SELECT * FROM events')->fetchAll(PDO::FETCH_ASSOC);
         foreach ($bdd as $events) {
             ?>
 
             <tr>
                 <td><?php echo $events['id'] ?></td>
                 <td><?php echo $events['name'] ?></td>
-                <td><?php echo $events['description'] ?></td>
+                <td><?php echo $events['discription'] ?></td>
                 <td><?php echo $events['date'] ?></td>
                 <td><?php echo $events['place'] ?></td>
                 <td><?php echo $events['url'] ?></td>
                 <td><?php echo $events['image'] ?></td>
                 <td>
-                    <a href="modify_events.php?id=<?php echo $events['id'] ?>" class="btn btn-primary">Modify</a>
+                    <a href="modify_events.php?id=<?php echo $events['id'] ?>" class="btn btn-info">Modify</a>
                     <a href="delete_events.php?id=<?php echo $events['id'] ?>"
                        onclick="return confirm('Do you really want to delete the event');"
                        class="btn btn-danger">Delete</a>
