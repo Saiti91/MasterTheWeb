@@ -1,4 +1,5 @@
 <?php
+$link = '../CSS/style.css';
 $titre = 'Sells Sheet';
 include '../includes/header_backoffice.php' ?>
 
@@ -6,12 +7,8 @@ include '../includes/header_backoffice.php' ?>
     <h1>Sells Sheet</h1>
     <?php
 
-    //include 'includes/Bdd_load.php';
-    try {
-        $bdd = new PDO('mysql:host=localhost;port=3306;dbname=masterthewebpa', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    } catch (Exception $e) {
-        die('Erreur: ' . $e->getMessage());
-    }
+    include '../includes/connexion_bdd.php';
+
     if (!isset($_POST['date']) || empty($_POST['date'])) {
         $_POST['date'] = "";
     }
@@ -89,7 +86,7 @@ include '../includes/header_backoffice.php' ?>
         }
         $q = 'SELECT commande.id,commande.date,produit.Description,commande.Status, user.pseudo FROM Commande INNER JOIN produit_commande ON
         commande.id = produit_commande.Commande_id INNER JOIN user ON commande.User_idUser = user.idUser INNER JOIN produit ON
-        produit.idProduit = produit_Commande.Produit_idProduit WHERE commande.date >= :time AND user.pseudo LIKE :user AND
+        produit.id = produit_Commande.Produit_idProduit WHERE commande.date >= :time AND user.pseudo LIKE :user AND
         produit_commande.Produit_idProduit LIKE :article AND commande.Status LIKE :statu ORDER BY commande.id DESC LIMIT 10 ';
         $req = $bdd->prepare($q);
         $req->execute(['time' => $_POST['date'],

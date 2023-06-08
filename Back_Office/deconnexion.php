@@ -1,4 +1,4 @@
-<?php 
+<?php
 //ouverture de la session 
 session_start();
 
@@ -6,7 +6,7 @@ session_start();
 session_destroy();
 
 //redirection vers la page d'accueil 
-header('location:Home page.php');
+header('location: ../Front_Office/index.php');
 exit;
 
 ?>

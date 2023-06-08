@@ -1,0 +1,32 @@
+
+        .custom-button {
+            background-color: #8E0808;
+            color: white;
+        }
+
+        .custom-button:hover {
+            opacity: 0.8;
+            color: #fff;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .table-white {
+            background-color: #D9D9D9;
+        }
+
+        .custom-alert {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #D9D9D9;
+            color: black;
+        }
+		
+		
+    

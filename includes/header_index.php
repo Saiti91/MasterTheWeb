@@ -8,12 +8,10 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="slider.js" type="text/javascript" defer></script>
     <link rel="stylesheet" type="text/css" href="../CSS/style_index.css"/>
-
 </head>
 
 <body>
 <header class="">
-
 
     <nav>
         <div class="container-fluid">
@@ -43,7 +41,12 @@
                         <a href="#">Shop</a>
                     </li>
                     <li class="col-1 pt-1">
-                        <a class="btn btn-danger" href="#">Login</a>
+                        <a class="btn btn-danger" href="#"><?php
+                            echo 'Login';
+                            include '../Back_Office/verification.php';
+                            echo 'Deconnexion';
+                            ?>
+                        </a>
                     </li>
                 </div>
             </ul>
