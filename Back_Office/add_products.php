@@ -33,7 +33,7 @@ include '../includes/header_backoffice.php'
 
                     if (in_array($img_ex_lc, $allowed_exs)) {
                         $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-                        $img_upload_path = 'uploads/' . $new_img_name;
+                        $img_upload_path = '../uploads/' . $new_img_name;
                         move_uploaded_file($tmp_name, $img_upload_path);
                     } else {
                         ?>
@@ -50,7 +50,7 @@ include '../includes/header_backoffice.php'
 
             if (!empty($name) && !empty($price) && !empty($image)) {
                 require_once '../includes/connexion_bdd.php';
-                $sqlState = $bdd->prepare('INSERT INTO Products(name,price/*,discount*/,image) VALUES(?,?,?,?)');
+                $sqlState = $bdd->prepare('INSERT INTO Products(name,price/*,discount*/,image) VALUES(?,?,?)');
                 $sqlState->execute([$name, $price/*, $discount*/, $image]);
                 ?>
 

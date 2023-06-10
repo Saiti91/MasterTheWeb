@@ -14,27 +14,38 @@
 
     <title><?php echo $titre ?></title>
 </head>
-<body class="bg-dark text-bg-dark">
-<header class="bg-secondary">
-    <h1>Back Office</h1>
-    <nav class="navbar-nav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="Sell_Sheet.php">Sells Sheet</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="User_Management.php">Users Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Articles Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="list_events.php">Events Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Comments Management</a>
-            </li>
-
-        </ul>
+<body>
+<header class="fixed-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">HolowMusic</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $titre == 'User Management' ? 'active' : ''; ?>"
+                           href="User_Management.php">User Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $titre == 'Products List' ? 'active' : ''; ?>"
+                           href="product_list.php">Products
+                            List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $titre == 'Events' ? 'active' : ''; ?>" href="">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $titre == 'Sells Management' ? 'active' : ''; ?>" href="">Sells
+                            Management</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+        Navbar text with an inline element
+      </span>
+            </div>
+        </div>
     </nav>
 </header>
