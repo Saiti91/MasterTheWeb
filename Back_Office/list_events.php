@@ -4,7 +4,7 @@ $link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <main>
-    <div class="container">
+    <div class="container pt-5">
         <div class="d-md-flex justify-content-between align-items-center my-5">
             <h2 class="mb-3 mb-md-0">Event</h2>
 
@@ -12,7 +12,7 @@ include '../includes/header_backoffice.php'
                 <a href="add_events.php" class="btn btn-custom">Add New Event</a>
             </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table class="table table-success table-striped">
 
             <thead>
             <tr>

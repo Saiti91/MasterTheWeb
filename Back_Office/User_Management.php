@@ -4,7 +4,7 @@ $titre = 'User Management';
 include '../includes/header_backoffice.php'; ?>
 
 <main class="bg-black text-light">
-    <div class="container ">
+    <div class="container pt-5 ">
         <h1>Users Management</h1>
 
         <?php
@@ -44,7 +44,7 @@ include '../includes/header_backoffice.php'; ?>
                            value="<?php echo !empty($_POST['suser']) ? $_POST['suser'] : ''; ?>">
                 </div>
                 <div style="padding-top: 31px" class="col-1">
-                    <input class="btn btn-default btn-danger" type="submit" value="Filtrer">
+                    <input class="btn btn-default btn-custom" type="submit" value="Filtrer">
                 </div>
             </div>
         </form>

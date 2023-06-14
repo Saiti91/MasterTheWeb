@@ -34,7 +34,7 @@ include '../includes/header_backoffice.php'
 
                 if (in_array($img_ex_lc, $allowed_exs)) {
                     $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-                    $img_upload_path = 'uploads/' . $new_img_name;
+                    $img_upload_path = '../uploads/' . $new_img_name;
                     move_uploaded_file($tmp_name, $img_upload_path);
                 } else {
                     ?>
@@ -47,7 +47,7 @@ include '../includes/header_backoffice.php'
         }
         if (!empty($name) && !empty($description) && !empty($image)) {
             require_once '../includes/connexion_bdd.php';
-            $res = $bdd->prepare('INSERT INTO Events(name,date,place,description,url,image) VALUES(?,?,?,?,?,?)');
+            $res = $bdd->prepare('INSERT INTO Event(name,date,place,description,url,image) VALUES(?,?,?,?,?,?)');
             $res->execute([$name, $date, $place, $description, $url, $image]);
             ?>
 

@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2e124b3-3011-4619-82fd-ecf8484cd029" name="Changes" comment="" />
+    <list default="true" id="e2e124b3-3011-4619-82fd-ecf8484cd029" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/Sell_Sheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/Sell_Sheet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/User_Management.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/User_Management.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/add_events.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/add_events.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/gestion_artcl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/gestion_artcl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/list_events.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/list_events.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_Office/product_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/Back_Office/product_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/Style_gestion_article.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/Style_gestion_article.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/style_s.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/style_s.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/header_backoffice.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/header_backoffice.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +55,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MAMP/htdocs/Projet Web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/MAMP/htdocs/MasterTheWeb/Back_Office&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -117,6 +129,8 @@
       <workItem from="1686232270758" duration="3092000" />
       <workItem from="1686237116423" duration="2943000" />
       <workItem from="1686313299403" duration="2969000" />
+      <workItem from="1686472894598" duration="725000" />
+      <workItem from="1686498154953" duration="603000" />
     </task>
     <servers />
   </component>
