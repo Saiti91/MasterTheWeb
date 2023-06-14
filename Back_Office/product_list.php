@@ -4,7 +4,7 @@ $link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <main>
-    <div class="container">
+    <div class="container pt-4">
         <div class="d-md-flex justify-content-between align-items-center my-5">
             <h2 class="mb-3 mb-md-0>Products">Products</h2>
             <div class="order-md-2 mt-3 mt-md-0">
@@ -13,7 +13,7 @@ include '../includes/header_backoffice.php'
         </div>
 
 
-        <table class="table table-striped table-hover">
+        <table class="table table-success table-striped">
             <thead>
             <tr>-
                 <th>#ID</th>
@@ -35,7 +35,7 @@ include '../includes/header_backoffice.php'
 
                 <tr>
                     <td><?php echo $products['id'] ?></td>
-                    <td><?php echo $products['name'] ?></td>
+                    <td><?php echo $products['Description'] ?></td>
                     <td><?php echo $products['price'] ?>€</td>
                     <!--                <td>--><?php //echo $products['discount'] ?><!--%</td>-->
                     <!--                <td>--><?php //echo $products['date_of_publication'] ?><!--</td>-->

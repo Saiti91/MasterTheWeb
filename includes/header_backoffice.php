@@ -14,7 +14,7 @@
 
     <title><?php echo $titre ?></title>
 </head>
-<body>
+<body data-bs-theme="dark">
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -30,16 +30,22 @@
                            href="User_Management.php">User Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $titre == 'Products List' ? 'active' : ''; ?>"
+                        <a class="nav-link <?php echo $titre == 'Products' ? 'active' : ''; ?>"
                            href="product_list.php">Products
                             List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $titre == 'Events' ? 'active' : ''; ?>" href="">Events</a>
+                        <a class="nav-link <?php echo $titre == 'Events' ? 'active' : ''; ?>" href="list_events.php">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $titre == 'Sells Management' ? 'active' : ''; ?>" href="">Sells
+                        <a class="nav-link <?php echo $titre == 'Sells Management' ? 'active' : ''; ?>"
+                           href="Sell_Sheet.php">Sells
                             Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $titre == 'Article Management' ? 'active' : ''; ?>"
+                           href="gestion_artcl.php">Article Management
+                        </a>
                     </li>
                 </ul>
             </div>
