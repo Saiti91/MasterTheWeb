@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="input">
-                        <input type="text" name="name" placeholder="Firstname" class="input-field"
+                        <input type="text" name="firstname" placeholder="Firstname" class="input-field"
                                value="<?= (isset($_COOKIE['name']) ? $_COOKIE['name'] : '') ?>">
                     </div>
 
@@ -103,7 +103,7 @@
 
                     <div class="btn-grp">
                         <a href="#" class="sign-btn-back">Back</a>
-
+                        <input type="submit" value="Sign in" class="sign-btn">
                     </div>
                 </div>
 
@@ -111,14 +111,14 @@
             </form>
 
 
-            </d3iv>
-
-            <div class="sign-in">
-                <h1>Already a member ?</h1>
-                <a href="connexion.php" class="sign-in-btn">Sign in</a>
-            </div>
-
         </div>
+
+        <div class="sign-in">
+            <h1>Already a member ?</h1>
+            <a href="connexion.php" class="sign-in-btn">Sign in</a>
+        </div>
+
+    </div>
 
     </div>
     </div>

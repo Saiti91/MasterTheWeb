@@ -2,6 +2,7 @@
 
 if (
     !isset($_POST['email']) || empty($_POST['email']) ||
+    !isset($_POST['mdp-confirm']) || empty($_POST['mdp-confirm']) ||
     !isset($_POST['mdp']) || empty($_POST['mdp']) ||
     !isset($_POST['username']) || empty($_POST['username']) ||
     !isset($_POST['firstname']) || empty($_POST['firstname']) ||
