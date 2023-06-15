@@ -5,7 +5,14 @@ include '../includes/header_backoffice.php'; ?>
 
 <main class="bg-black text-light">
     <div class="container pt-5 ">
-        <h1>Users Management</h1>
+        <div class="row">
+            <h1 class="col-11">Users Management</h1>
+            <form class="col-1" action="" method="post">
+                <div style="padding-top: 31px" class="col-1">
+                    <input class="btn btn-default btn-custom" type="submit" value="Filtrer">
+                </div>
+            </form>
+        </div>
 
         <?php
         include '../includes/connexion_bdd.php';
@@ -48,6 +55,7 @@ include '../includes/header_backoffice.php'; ?>
                 </div>
             </div>
         </form>
+
 
         <table class="table table-success table-striped">
             <?php
