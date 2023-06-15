@@ -29,7 +29,7 @@
                     </li>
                     <div class="col-5"></div>
                     <li class="col-1 pt-3">
-                        <a href="#">Home</a>
+                        <a href="../Front_Office/index.php">Home</a>
                     </li>
                     <li class="col-1 pt-3">
                         <a href="#">News</a>
@@ -41,9 +41,9 @@
                         <a href="#">Shop</a>
                     </li>
                     <li class="col-1 pt-1">
-                        <a class="btn btn-danger" href="#"><?php
+                        <a class="btn btn-danger" href="../Front_Office/connexion.php"><?php
                             echo 'Login';
-                            include '../Back_Office/verification.php';
+                            //include 'verification.php';
 
                             ?>
                         </a>

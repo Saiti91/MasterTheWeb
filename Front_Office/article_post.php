@@ -13,9 +13,9 @@ if (!isset($_SESSION['user_id'])) {
 // rediriger vers connexion.php ou rester dans la meme page ?
 
 
-require 'C:\MAMP\htdocs\PHPMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\PHPMailer.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\SMTP.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\Exception.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\PHPMailer.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

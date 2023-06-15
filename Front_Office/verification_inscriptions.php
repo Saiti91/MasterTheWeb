@@ -37,7 +37,7 @@ if (!empty($results)) {
     exit;
 }
 
-$q = 'INSERT INTO User (username,firstname,birthdate,email,mdp) VALUES(?,?,?,?,?)'; //Requete
+$q = 'INSERT INTO User (username,firstname,birthdate,email,password,Status) VALUES(?,?,?,?,?,1)'; //Requete
 $req = $bdd->prepare($q); //Préparation de la requete
 $results = $req->execute([
     htmlspecialchars($_POST['username']),

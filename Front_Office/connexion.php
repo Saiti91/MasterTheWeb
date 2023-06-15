@@ -9,30 +9,18 @@
 
 </head>
 <body>
-
 <main>
-
-
     <div class="box1">
-
-
         <div class="inner-box">
-
             <div class="formulaire">
                 <form action="verification.php" method="POST" class="sign-in">
-
-
                     <div class="head1">
                         <h1>Sign in</h1>
                     </div>
-
-
                     <div class="actual-form">
                         <div class="input">
                             <input type="email" name="email" placeholder="Email" class="input-field">
                         </div>
-
-
                         <div class="input">
                             <input type="password" name="mdp" placeholder="Password" class="input-field">
                         </div>
@@ -43,31 +31,20 @@
                         }
 
                         ?>
-
                         <input type="submit" value="login" class="sign-btn">
-
-
                         <p class="text-help">
                             Forgotten your password ?
                             <a href="forgot-mdp.php">Get help</a> signing in
                         </p>
-
-
                     </div>
                 </form>
-
             </div>
-
-
             <div class="sign-up">
                 <h1>New here ?</h1>
                 <a href="inscription.php" class="sign-up-btn">Sign up</a>
             </div>
-
-
         </div>
     </div>
-
 </main>
 </body>
 </html>

@@ -7,9 +7,9 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require 'C:\MAMP\htdocs\PHPMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\PHPMailer.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\SMTP.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\Exception.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\Projet Annuel\MasterTheWeb\PHPMailer.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\SMTP.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
