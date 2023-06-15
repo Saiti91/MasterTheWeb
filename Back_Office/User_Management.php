@@ -9,7 +9,7 @@ include '../includes/header_backoffice.php'; ?>
             <h1 class="col-11">Users Management</h1>
             <form class="col-1" action="" method="post">
                 <div style="padding-top: 31px" class="col-1">
-                    <input class="btn btn-default btn-custom" type="submit" value="Filtrer">
+                    <input class="btn btn-default btn-custom rounded-circle" type="submit" value="+">
                 </div>
             </form>
         </div>
@@ -70,6 +70,7 @@ include '../includes/header_backoffice.php'; ?>
             $req->execute(['time' => $_POST['date'], 'pseudo' => $_POST['suser']]);
             $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
             ?>
+            <thead>
             <tr>
                 <th class="text-center">User ID</th>
                 <th class="text-center">Date inscription</th>
@@ -78,6 +79,8 @@ include '../includes/header_backoffice.php'; ?>
                 <th class="text-center">Status</th>
                 <th class="text-center">Action</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             foreach ($donnees as $index => $value) {
                 echo '<tr>';
@@ -85,10 +88,14 @@ include '../includes/header_backoffice.php'; ?>
                     echo '<td class="text-center">' . $valeur . '</td>';
                 }
                 echo '<td class="text-center">
-                    <form class="p-0 m-2 " method="post" action="User_Management.php">
-                    <button type="submit" class="btn btn-primary" value="' . $value['idUser'] . '" name="mail" id="mail">Mail</button> 
-                    <button type="submit" class="btn btn-danger" value="' . $value['idUser'] . '" name="exclude" id="exclude">Exclure</button>
-                    </form>
+                   <form action="">
+                   <input type="hidden" name="a_recup" value="' . $value['idUser'] . '"/>
+                    <div class="p-0 m-2" >
+                        <a class="btn btn-secondary btn-sm" value="' . $value['idUser'] . '" href="modify_user.php">Modifier</a>
+                        <a class="btn btn-primary btn-sm" href="mail_user.php">Mail</a>
+                        <a class="btn btn-danger btn-sm" href="exclude_user.php">Exclure</a>
+                    </div>
+                   </form>
                 </td>';
                 echo '</tr>';
             }
@@ -101,6 +108,7 @@ include '../includes/header_backoffice.php'; ?>
                 $_POST['exclude'] = 0;
             }
             ?>
+            </tbody>
         </table>
     </div>
 </main>
