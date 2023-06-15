@@ -3,84 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="Style_inscription.css"/>
-    <title>Sign up</title>
-
-
+	<link rel="stylesheet" type="text/css" href="Style_inscription.css"/>
+	<script src="inscription.js" defer></script>
+	 <title>Sign up</title> 
 </head>
-<body>
+<body>     
+		<main>
+		<div class="box1">
+		  <div class="inner-box">
+		 
 
+		  <form action="verification_inscriptions.php" method="POST" class=" sign-up"> 
+		  
+		 
+		 	 <div class="head1">
+		     <h1>Sign up</h1>
+		     </div> 
+			 
+			 <!-- la barre de progress_bar -->
+			 <!-- sera positioné de maniére absolu par rapport à son parent  donc h1-->
+			 <div class="progress-bar">
+			 
+			 <div class="progress" id="progress"></div>
+			 <!--passer d'une etape a une autre -->
+			 
+			 <div class="progress-step progress-step-active"></div>
+			 <!--montrer que la barre de progression est active -->
+			 <div class="progress-step"></div>
+			 <div class="progress-step"></div>
+			 </div>
+			 
+			 
+		   <div class="form-step form-step-active">
+			
+		    <div class="input">
+             <input type="text" name="username"  placeholder="Username" class="input-field" value="<?= (isset($_COOKIE['username']) ? $_COOKIE['username'] : '') ?>">
+		   </div>
+		   
+		   <div class="input">
+             <input type="text" name="name" placeholder="Firstname" class="input-field"value="<?= (isset($_COOKIE['name']) ? $_COOKIE['name'] : '') ?>">
+		   </div> 
+		  
+			  <?php
 
-<main>
+            if(isset($_GET['message']) && !empty($_GET['message'])){
+                echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
+            }
+   
+        ?>
+            
+			<a href="#" class="sign-btn">Next</a>
+            
+			</div> 
+			
+			
+			
+			  <div class="form-step">
+		   <div class="input">
+             <input type="date" name="date_of_birth" placeholder="Date of birth" class="input-field" value="<?= (isset($_COOKIE['date_of_birth']) ? $_COOKIE['date_of_birth'] : '') ?>">
+		   </div> 
+		 
+		   <div class="input">
+             <input type="email" name="email"  placeholder="Email" class="input-field"value="<?= (isset($_COOKIE['email']) ? $_COOKIE['email'] : '') ?>">
+		   </div>
+		   
+		   
+		 
+		    <?php
 
+            if(isset($_GET['message']) && !empty($_GET['message'])){
+                echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
+            }
+   
+        ?>
+		   <div class="btn-grp">
+		    <a href="#" class="sign-btn-back">Back</a>
+		   <a href="#" class="sign-btn">Next</a>
+		   </div> 
+		    </div> 
+		   
+			 <div class="form-step ">
+		   <div class="input">
+             <input type="password" name="mdp" placeholder="Password" class="input-field">
+		   </div> 
+		   
+		     <div class="input">
+             <input type="password" name="mdp-confirm" placeholder="Confirm Password" class="input-field">
+		   </div>
+		   
+		    <?php
 
-    <div class="box1">
+            if(isset($_GET['message']) && !empty($_GET['message'])){
+                echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
+            }
+   
+        ?>
+		   
+		   <div class="btn-grp">
+		   <a href="#" class="sign-btn-back">Back</a>
+		
+			 </div>
+		   </div> 
+			
+			
+			
+			
+			
+			
+			
+			
 
+         </form> 
+		 
+		 
+		   </d3iv>
+		   
+		  <div class="sign-in">
+		  <h1>Already a member ?</h1>
+          <a href="connexion.php" class="sign-in-btn">Sign in</a>
+          </div>
 
-        <div class="inner-box">
-
-            <div class="formulaire">
-                <form action="verification_inscriptions.php" method="POST" class="sign-up">
-
-
-                    <div class="head1">
-                        <h1>Sign up</h1>
-                    </div>
-
-
-                    <div class="actual-form">
-                        <div class="input">
-                            <input type="text" name="username" placeholder="Username" class="input-field">
-                        </div>
-
-                        <div class="input">
-                            <input type="text" name="firstname" placeholder="Firstname" class="input-field">
-                        </div>
-
-
-                        <div class="input">
-                            <input type="date" name="date_of_birth" placeholder="Date of birth" class="input-field">
-                        </div>
-
-
-                        <div class="input">
-                            <input type="email" name="email" placeholder="Email" class="input-field">
-                        </div>
-
-
-                        <div class="input">
-                            <input type="password" name="mdp" placeholder="Password" class="input-field">
-                        </div>
-
-
-                        <?php
-
-                        if (isset($_GET['message']) && !empty($_GET['message'])) {
-                            echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
-                        }
-
-                        ?>
-
-                        <input type="submit" value="Sign in" class="sign-btn">
-
-
-                    </div>
-                </form>
-
-            </div>
-
-
-            <div class="sign-in">
-                <h1>Already a member ?</h1>
-                <a href="connexion.php" class="sign-in-btn">Sign in</a>
-            </div>
-
-
-        </div>
-    </div>
-
-</main>
-
-
+		</div>
+		
+		</div>
+		 </div>
+		</main>  
 </body>
 </html>
