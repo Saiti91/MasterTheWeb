@@ -35,7 +35,7 @@ if (empty($results)) {
     $_SESSION['user_id'] = $userId;
     $_SESSION['username'] = $username;
 
-    header('location: C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\Front_Office\index.php');
+    header('location: ../Front_Office/index.php');
     exit;
 }
 ?>

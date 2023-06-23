@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\Projet Annuel\MasterTheWeb\PHPMailer.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\PHPMailer.php';
 require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHPMailer\src\SMTP.php';
 
 //Create an instance; passing `true` enables exceptions
@@ -63,12 +63,12 @@ try {
 
     $mail->send();
 
-    header('location: ../fFront_Office/forgot-mdp.php?success=1');
+    header('location: ../Front_Office/forgot-mdp.php?success=1');
     exit;
 
 } catch (Exception $e) {
 
-    header('location: ../fFront_Office/forgot-mdp.php?success=2');
+    header('location: ../Front_Office/forgot-mdp.php?success=2');
     exit;
 
 }

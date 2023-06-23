@@ -6,18 +6,16 @@ include '../includes/connexion_bdd.php'
     <section>
         <div id="slider">
             <div class="img">
-                <img src="asset/concert1.webp" alt="concert1" id="slide"/>
+                <img src="../asset/concert1.webp" alt="concert1" id="slide"/>
             </div>
             <div id="precedent" onclick="ChangeSlide(-1)">&lt;</div>
             <div id="suivant" onclick="ChangeSlide(1)">&gt;</div>
         </div>
     </section>
-
     <section class="products" id="products">
         <div class="heading">
             <h2>Category</h2>
         </div>
-
         <div class="category">
             <?php
             $q = 'SELECT name FROM Category LIMIT 4';
@@ -27,13 +25,14 @@ include '../includes/connexion_bdd.php'
             foreach ($donnees as $index => $value) {
                 echo '
                     <div id="c">
-                        <a href="#" class="btn rounded-pill">' . $value['nom'] . '</a>
+                        <a href="#" class="btn rounded-pill">' . $value['name'] . '</a>
                     </div>';
             }
             ?>
         </div>
 
         <div class="products-container">
+            <h2>Articles</h2>
             <?php
             $q = 'SELECT * FROM Article LIMIT 4';
             $req = $bdd->prepare($q);
@@ -43,9 +42,9 @@ include '../includes/connexion_bdd.php'
                 echo ' 
                     <div class="box">
                     <img class="image" src="' . $value['image'] . '" alt="image"/>
-                    <p id="d">' . $value['horodatage'] . '</p>
-                    <h2 id="title">' . $value['titre'] . '</h2>
-                    <p id="description">' . $value['text'] . '</p>
+                    <p id="d">' . $value['date_of_publ'] . '</p>
+                    <h2 id="title">' . $value['title'] . '</h2>
+                    <p id="description">' . $value['body'] . '</p>
                     <div class="content">
                         <a href="#" target="_blank" class="btn rounded-pill"
                     >Read More</a
@@ -77,7 +76,7 @@ include '../includes/connexion_bdd.php'
                 echo '
                     <div class="card">
                     <div class="card-image img-' . ($index + 1) . '"></div>
-                    <h2>' . $value['Description'] . '<br/>' . $value['prix'] . '€</h2>
+                    <h2>' . $value['Description'] . '<br/>' . $value['price'] . '€</h2>
                     <a href="shop.html">Buy now</a>
                     </div>
                     ';

@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Home</title>
+    <title><?php echo $titre ?></title>
+    <link rel="shortcut icon" href="../asset/Logotab.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="slider.js" type="text/javascript" defer></script>
     <link rel="stylesheet" type="text/css" href="../CSS/style_index.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $link ?>"/>
 </head>
 
 <body>
@@ -18,10 +20,11 @@
             <ul>
                 <div class="row">
                     <li class="col-1">
-                        <a href="index.php"><img class="pb-3" src="asset/Logo.svg"
-                                                 width="50px"
-                                                 height="50px"
-                                                 alt="logo">
+                        <a href="index.php">
+                            <img class="pb-3" src="../asset/Logo.svg"
+                                 width="50px"
+                                 height="50px"
+                                 alt="logo">
                         </a>
                     </li>
                     <li class="col-1 pt-2">

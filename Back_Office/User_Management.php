@@ -6,17 +6,13 @@ include '../includes/header_backoffice.php'; ?>
 <main class="bg-black text-light">
     <div class="container pt-5 ">
         <div class="row">
-            <h1 class="col-11">Users Management</h1>
-            <form class="col-1" action="" method="post">
-                <div style="padding-top: 31px" class="col-1">
-                    <input class="btn btn-default btn-custom rounded-circle" type="submit" value="+">
-                </div>
-            </form>
+            <h1 class="col-4">Users Management</h1>
+            <div style="padding-top: 31px" class="offset-7 col-1">
+                <a class="btn btn-default btn-custom rounded-circle" href="add_user.php">+</a>
+            </div>
         </div>
-
         <?php
         include '../includes/connexion_bdd.php';
-
 
         if (!isset($_POST['date']) || empty($_POST['date'])) {
             $_POST['date'] = date("Y/m/d", strtotime("-3 Months"));
@@ -69,6 +65,7 @@ include '../includes/header_backoffice.php'; ?>
             $req = $bdd->prepare($q);
             $req->execute(['time' => $_POST['date'], 'pseudo' => $_POST['suser']]);
             $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+
             ?>
             <thead>
             <tr>
@@ -85,15 +82,22 @@ include '../includes/header_backoffice.php'; ?>
             foreach ($donnees as $index => $value) {
                 echo '<tr>';
                 foreach ($value as $i => $valeur) {
-                    echo '<td class="text-center">' . $valeur . '</td>';
+                    if ($i == "Status" && $value['Status'] == 1) {
+                        echo '<td class="text-center">User</td>';
+                    } elseif ($i == "Status" && $value['Status'] == 2) {
+                        echo '<td class="text-center">Admin</td>';
+                    } else {
+                        echo '<td class="text-center">' . $valeur . '</td>';
+                    }
+
                 }
                 echo '<td class="text-center">
                    <form action="">
                    <input type="hidden" name="a_recup" value="' . $value['idUser'] . '"/>
                     <div class="p-0 m-2" >
-                        <a class="btn btn-secondary btn-sm" value="' . $value['idUser'] . '" href="modify_user.php">Modifier</a>
-                        <a class="btn btn-primary btn-sm" href="mail_user.php">Mail</a>
-                        <a class="btn btn-danger btn-sm" href="exclude_user.php">Exclure</a>
+                        <a class="btn btn-secondary btn-sm" href="modify_user.php?idUser=' . $value['idUser'] . '">Modifier</a>
+                        <a class="btn btn-primary btn-sm" href="mail_user.php?idUser=' . $value['idUser'] . '">Mail</a>
+                        <a class="btn btn-danger btn-sm" href="exclude_user.php?idUser=' . $value['idUser'] . '">Exclure</a>
                     </div>
                    </form>
                 </td>';
@@ -113,9 +117,9 @@ include '../includes/header_backoffice.php'; ?>
     </div>
 </main>
 <footer>
-    <!--    --><?php //
-    //        include 'includes/footer.php';
-    //    ?>
+    <?php
+    //include 'includes/footer.php';
+    ?>
 </footer>
 </body>
 </html>
