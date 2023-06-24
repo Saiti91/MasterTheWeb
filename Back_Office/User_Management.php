@@ -1,4 +1,6 @@
 <?php
+session_start();
+include '../includes/connexion_check_admin.php';
 $link = '../CSS/style_s.css';
 $titre = 'User Management';
 include '../includes/header_backoffice.php'; ?>

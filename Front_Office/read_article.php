@@ -1,21 +1,12 @@
 <?php
-require_once '../includes/connexion_bdd.php';
+session_start();
+include '../includes/connexion_check.php';
+require_once 'connexion_bdd.php';
 
-$articles = $bdd->query('SELECT Article.*, User.username
-          FROM Article
-          INNER JOIN User ON Article.User_id = User.idUser
-          ORDER BY Article.date_of_publ DESC, Article.Category_id');
-
-
-// if (isset($_GET['search']) && !empty($_GET['search'])) {
-// $search = htmlspecialchars($_GET['search']);
-// $query = 'SELECT id, title, user_id, date_of_publ, category, image FROM article WHERE title LIKE "%' . $search . '%"  OR body LIKE "%' . $search . '%" ORDER BY id DESC';}	  
-
-// $result = $bdd->query($query);
-
-// if (!$result) {
-// die("Erreur dans la requête : " . $bdd->errorInfo()[2] enlever se truc si garde pas la fonction recherche!!!!!!!!);
-// }
+$articles = $bdd->query('SELECT article.*, users.username
+          FROM article
+          INNER JOIN users ON article.user_id = users.id
+          ORDER BY article.date_of_publ DESC, article.category');
 ?>
 
 <!DOCTYPE html>
@@ -23,90 +14,11 @@ $articles = $bdd->query('SELECT Article.*, User.username
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylef.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="stylef.css">
+    <link rel="stylesheet" type="text/css" href="Style_read_article.css"/>
     <title>Read Article</title>
-    <style>
-
-        body {
-            background-color: black;
-        }
-
-        .text-custom {
-            color: #8E0808;
-        }
-
-        .text {
-            color: white;
-        }
-
-
-        .card-img-top {
-            height: 350px;
-            object-fit: cover;
-
-        }
-
-        .btn-custom {
-            background-color: #8E0808;
-            color: #fff;
-        }
-
-
-        .card {
-            background-color: #121317;
-            color: #fff;
-
-        }
-
-        .card,
-        .card-img-top {
-            border-radius: 20px;
-        }
-
-        .card-body {
-            overflow: hidden;
-        }
-
-        .bg-custom {
-            background-color: #121317;
-            width: 100px;
-        }
-
-        .card-text {
-            color: #D9D9D9;
-        }
-
-        .custom-h2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            border-radius: 10px;
-            background-color: #121317;
-            font-size: 16px;
-            color: white;
-            width: 150px;
-        }
-
-        .container {
-            margin: 50px;
-        }
-
-
-        @media (max-width: 850px) {
-            .row .col-md-4 {
-                margin-bottom: 50px;
-                display: flex;
-                justify-content: center;
-
-            }
-        }
-
-
-    </style>
 </head>
 <body>
 

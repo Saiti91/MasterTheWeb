@@ -1,5 +1,6 @@
 <?php
-//include '../includes/connexion_check.php';
+session_start();
+include '../includes/connexion_check.php';
 include '../includes/message.php';
 include '../includes/connexion_bdd.php';
 

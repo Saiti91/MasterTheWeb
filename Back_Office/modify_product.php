@@ -1,4 +1,6 @@
 <?php
+session_start();
+include '../includes/connexion_check_admin.php';
 $titre = 'Modify products';
 $link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'

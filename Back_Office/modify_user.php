@@ -1,5 +1,6 @@
 <?php
-//connexion admin ?
+session_start();
+include '../includes/connexion_check_admin.php';
 $link = '../CSS/style_s.css';
 $titre = 'Modify User Information';
 include '../includes/header_backoffice.php';

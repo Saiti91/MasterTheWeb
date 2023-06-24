@@ -1,6 +1,6 @@
 <?php
-//session_start();
-$_SESSION['email'] = 'vellastephane91@gmail.com';
+session_start();
+include '../includes/connexion_check.php';
 $link = '';
 $titre = 'Profil';
 include '../includes/header_index.php';

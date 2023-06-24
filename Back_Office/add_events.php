@@ -1,10 +1,12 @@
 <?php
+session_start();
+include '../includes/connexion_check_admin.php';
 $titre = 'Add Events';
 $link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 
-<div class="container">
+<div class="container pt-5">
     <h2>Add New event</h2>
     <?php
     if (isset($_POST['add'])) {

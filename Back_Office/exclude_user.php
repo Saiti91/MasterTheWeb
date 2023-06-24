@@ -1,5 +1,6 @@
 <?php
-//connexion admin ?
+session_start();
+include '../includes/connexion_check_admin.php';
 include_once '../includes/connexion_bdd.php';
 
 //isset get ['id']

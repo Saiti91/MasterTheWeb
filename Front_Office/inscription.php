@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="input">
-                        <input type="text" name="firstname" placeholder="Firstname" class="input-field"
+                        <input type="text" name="name" placeholder="Firstname" class="input-field"
                                value="<?= (isset($_COOKIE['name']) ? $_COOKIE['name'] : '') ?>">
                     </div>
 

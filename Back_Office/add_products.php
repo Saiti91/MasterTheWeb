@@ -1,10 +1,12 @@
 <?php
+session_start();
+include '../includes/connexion_check_admin.php';
 $titre = 'Add Products';
 $link = '../CSS/style_back_officeM.css';
 include '../includes/header_backoffice.php'
 ?>
 <main>
-    <div class="container">
+    <div class="container pt-5">
         <h2>Add products</h2>
         <?php
         if (isset($_POST['add'])) {

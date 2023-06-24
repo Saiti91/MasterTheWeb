@@ -7,7 +7,7 @@ function ChangeSlide(sens) {
         num = 0;
     if (num < 0)
         num = 3;
-    document.getElementById("slide").src = "asset/" + slide[num];
+    document.getElementById("slide").src = "../asset/" + slide[num];
 
 }
 

@@ -1,6 +1,11 @@
-<?php include '../includes/header_index.php';
-include '../includes/connexion_bdd.php'
-
+<?php
+session_start();
+include '../includes/connexion_check.php';
+$link = '../CSS/style_index.css';
+$titre = 'Acceuil';
+$script = '../JS/slider.js';
+include '../includes/header_index.php';
+include '../includes/connexion_bdd.php';
 ?>
 <main>
     <section>

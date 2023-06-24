@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../includes/connexion_check.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -15,25 +15,21 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
 include '../includes/connexion_bdd.php';
 
-$q = 'SELECT idUser FROM User WHERE email = ? AND password = ?';
+$q = 'SELECT email,Status FROM User WHERE email = ? AND password = ?';
 $req = $bdd->prepare($q);
 $email = ($_POST['email']);
 $mdp = hash('sha256', ($_POST['mdp']));
 $req->execute(array($email, $mdp));
-$results = $req->fetchAll();
+$results = $req->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($results)) {
     header('location:connexion.php?message=Incorrect identifier');
     exit;
 } else {
 
-    $_SESSION['email'] = $_POST['email'];
-
     // Récupérer l'ID de l'utilisateur et le nom !
-    $userId = $results[0]['id'];
-    $username = $results[0]['username'];
-    $_SESSION['user_id'] = $userId;
-    $_SESSION['username'] = $username;
+    $_SESSION['email'] = $results[0]['email'];
+    $_SESSION['Status'] = $results[0]['Status'];
 
     header('location: ../Front_Office/index.php');
     exit;
