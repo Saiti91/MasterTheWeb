@@ -13,49 +13,48 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $link ?>"/>
 </head>
 <body>
-<header class="">
-
+<header>
     <nav>
         <div class="container-fluid">
             <ul>
                 <div class="row">
                     <li class="col-1">
                         <a href="index.php">
-                            <img class="pb-3" src="../asset/Logo.svg"
+                            <img class="" src="../asset/Logo.svg"
                                  width="50px"
                                  height="50px"
                                  alt="logo">
                         </a>
                     </li>
-                    <li class="col-1 pt-2">
-                        <p class="fw-bold fs-3">HOLOWMUSIC</p>
+                    <li class="col-1 pt-3">
+                        <p class="fw-bold fs-3 text-center">HOLOWMUSIC</p>
                     </li>
 
                     <?php
                     if (!isset($_SESSION['Status']) || empty($_SESSION['Status'])) {
-                        echo '<li class="offset-5 col-1 pt-3">
+                        echo '<li class="offset-5 col-1 pt-4 text-center">
                         <a href="../Front_Office/index.php">Home</a>
                     </li>';
                     } elseif ($_SESSION['Status'] == 1) {
-                        echo '<li class="offset-5 col-1 pt-3">
+                        echo '<li class="offset-5 col-1 pt-4 text-center">
                             <a href="../Front_Office/index.php">Home</a></li>';
                     } elseif ($_SESSION['Status'] == 2) {
-                        echo '<li class="offset-4 col-1 pt-3">
+                        echo '<li class="offset-4 col-1 pt-4">
                             <a href="../Back_Office/User_Management.php">Back Office</a></li>
-                            <li class="col-1 pt-3">
+                            <li class="col-1 pt-4 text-center">
                             <a href="../Front_Office/index.php">Home</a></li>';
                     }
                     ?>
-                    <li class="col-1 pt-3">
+                    <li class="col-1 pt-4 text-center">
                         <a href="#">Profil</a>
                     </li>
-                    <li class="col-1 pt-3">
+                    <li class="col-1 pt-4 text-center">
                         <a href="#">Articles</a>
                     </li>
-                    <li class="col-1 pt-3">
+                    <li class="col-1 pt-4 text-center">
                         <a href="#">Shop</a>
                     </li>
-                    <li class="col-1 pt-2">
+                    <li class="col-1 pt-3">
                         <a class="btn btn-danger" href="../Front_Office/connexion.php">
                             <?php
                             if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
