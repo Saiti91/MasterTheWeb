@@ -1,31 +1,34 @@
 <?php
-session_start();
-include '../includes/connexion_check_admin.php';
+// Vérifier si c'est l'admin qui est connecté pour avoir accès à la page
+$isAdmin = true; // Remplacez par logique de vérification de l'administrateur
 
+if (!$isAdmin) {
+    echo "Accès refusé.";
+    exit;
+}
 include '../includes/connexion_bdd.php';
-
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = trim($_GET['search']); // Supprime les espaces en début et en fin de chaîne
     $search = htmlspecialchars($search);
-    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Article.Category_id FROM Article
-              INNER JOIN User ON Article.User_id = User.idUser
-              WHERE Article.title LIKE "%' . $search . '%" OR Article.body LIKE "%' . $search . '%" OR User.username LIKE "%' . $search . '%"
-              ORDER BY Article.id DESC';
+    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Category.name FROM Article
+              INNER JOIN User ON Article.User_id = User.idUser JOIN Category ON Article.Category_id = Category.id
+              WHERE Article.title LIKE "%' . $search . '%" OR Article.body LIKE "%' . $search . '%" OR User.username 
+              LIKE "%' . $search . '%" ORDER BY Article.id DESC';
 } elseif (isset($_GET['category']) && !empty($_GET['category'])) {
     $category = htmlspecialchars($_GET['category']);
-    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Article.Category_id FROM Article
-              INNER JOIN User ON Article.User_id = User.idUser JOIN Category ON category.id = Article.Category_id
+    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Category.name FROM Article
+              INNER JOIN User ON Article.User_id = User.idUser JOIN Category ON Article.Category_id = Category.id
               WHERE Category.name = "' . $category . '"
               ORDER BY Article.id DESC';
 } elseif (isset($_GET['recent'])) {
     $threeMonthsAgo = date('Y-m-d', strtotime('-3 months'));
-    $query = 'SELECT Article.id, Article.title, users.username, Article.date_of_publ, Article.Category_id FROM Article
-              INNER JOIN User ON Article.User_id = User.idUser
+    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Category.name FROM Article
+              INNER JOIN User ON Article.user_id = User.idUser JOIN Category ON Article.Category_id = Category.id
               WHERE Article.date_of_publ >= "' . $threeMonthsAgo . '"
               ORDER BY Article.id DESC';
 } else {
-    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Article.Category_id FROM Article
-              INNER JOIN User ON Article.User_id = User.idUser
+    $query = 'SELECT Article.id, Article.title, User.username, Article.date_of_publ, Category.name FROM Article
+              INNER JOIN User ON Article.user_id = User.idUser JOIN Category ON Article.Category_id = Category.id
               ORDER BY Article.id DESC';
 }
 
@@ -51,14 +54,15 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $message = "Article deleted successfully!";
     }
 }
+?>
+
+<?php
 $link = '../CSS/Style_gestion_article.css';
-$titre = 'Article Management';
+$titre = "Article Management";
 include '../includes/header_backoffice.php';
 
 ?>
-
 <div class="container pt-5">
-    <header></header>
     <div class="d-md-flex justify-content-between align-items-center my-5">
         <h1 class="mb-3 mb-md-0">Article</h1>
         <div class="order-md-1">
@@ -99,7 +103,7 @@ include '../includes/header_backoffice.php';
             <a href="article_post.php" class="btn btn-sm custom-button">Add New Article</a>
         </div>
     </div>
-    <table class="table table-bordered table-striped table-white">
+    <table class="table table-bordered table-success table-striped">
         <thead>
         <tr>
             <th>Id</th>
@@ -120,7 +124,7 @@ include '../includes/header_backoffice.php';
                     <td><?php echo $row["title"]; ?></td>
                     <td><?php echo isset($row["username"]) ? $row["username"] : ""; ?></td>
                     <td><?php echo isset($row["date_of_publ"]) ? $row["date_of_publ"] : ""; ?></td>
-                    <td><?php echo isset($row["category"]) ? $row["category"] : ""; ?></td>
+                    <td><?php echo isset($row["name"]) ? $row["name"] : ""; ?></td>
                     <td>
                         <a href="article_read_more.php?id=<?php echo $row["id"]; ?>" class="btn btn-sm btn-info ">Read
                             More</a>

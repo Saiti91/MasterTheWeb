@@ -10,84 +10,48 @@
     <script src="<?php echo $script ?>" type="text/javascript" defer></script>
 
     <link rel="stylesheet" type="text/css" href="../CSS/style_index.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/style_footer.css.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo $link ?>"/>
 </head>
 <body>
+
 <header>
-    <nav>
-        <div class="container-fluid">
-            <ul>
-                <div class="row">
-                    <li class="col-1">
-                        <a href="index.php">
-                            <img class="" src="../asset/Logo.svg"
-                                 width="50px"
-                                 height="50px"
-                                 alt="logo">
-                        </a>
-                    </li>
-                    <li class="col-1 pt-3">
-                        <p class="fw-bold fs-3 text-center">HOLOWMUSIC</p>
-                    </li>
-
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid text-center">
+            <a class="navbar-brand  px-3 mb-2" href="index.php">
+                <img class="" src="../asset/Logo.svg"
+                     width="50px"
+                     height="50px"
+                     alt="logo">
+            </a>
+            <p class="fw-bold fs-3 mt-3 text-center">HOLOWMUSIC</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
                     <?php
-                    if (!isset($_SESSION['Status']) || empty($_SESSION['Status'])) {
-                        echo '<li class="offset-5 col-1 pt-4 text-center">
-                        <a href="../Front_Office/index.php">Home</a>
-                    </li>';
-                    } elseif ($_SESSION['Status'] == 1) {
-                        echo '<li class="offset-5 col-1 pt-4 text-center">
-                            <a href="../Front_Office/index.php">Home</a></li>';
-                    } elseif ($_SESSION['Status'] == 2) {
-                        echo '<li class="offset-4 col-1 pt-4">
-                            <a href="../Back_Office/User_Management.php">Back Office</a></li>
-                            <li class="col-1 pt-4 text-center">
-                            <a href="../Front_Office/index.php">Home</a></li>';
+                    if (isset($_SESSION['Status']) && $_SESSION['Status'] == 2) {
+                        echo '<a class=" nav-link px-3" href="../Back_Office/User_Management.php">Back Office</a>';
                     }
+                    echo '<a class=" nav-link px-3  ' . ($titre == 'Acceuil' ? 'active' : '') . '" href="../Front_Office/index.php">Home</a>
+                    <a class=" nav-link px-3  ' . ($titre == 'Profil' ? 'active' : '') . '" href="../Front_Office/profil.php">Profil</a>
+                    <a class=" nav-link px-3  ' . ($titre == 'Articles' ? 'active' : '') . '" href="../Front_Office/read_article.php">Articles</a>
+                    <a class=" nav-link px-3  ' . ($titre == 'Shop' ? 'active' : '') . '" href="#">Shop</a>
+                        <a class="btn btn-danger px-3"';
+                    if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+                        echo 'href="../Front_Office/connexion.php">Login';
+                    } else {
+                        echo 'href="../Front_Office/deconnexion.php">Deconnexion';
+                    }
+
+
+                    echo '</a>
+                    </li>';
                     ?>
-                    <li class="col-1 pt-4 text-center">
-                        <a href="#">Profil</a>
-                    </li>
-                    <li class="col-1 pt-4 text-center">
-                        <a href="#">Articles</a>
-                    </li>
-                    <li class="col-1 pt-4 text-center">
-                        <a href="#">Shop</a>
-                    </li>
-                    <li class="col-1 pt-3">
-                        <a class="btn btn-danger" href="../Front_Office/connexion.php">
-                            <?php
-                            if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-                                echo 'Login';
-                            } else {
-                                echo 'Deconnexion';
-                            }
-
-                            ?>
-                        </a>
-                    </li>
                 </div>
-            </ul>
-
+            </div>
         </div>
     </nav>
-
-    <?php
-    //                $w = window.innerWidth;
-    //            if(w < 650px)
-    //            {
-    //                    echo
-    //                    '/*SVG*/';
-    //
-    //            }
-    //            else
-    //            {
-    //                echo    '
-    //                <a href="" id="hmenu"><strong>Home</strong></a>
-    //                <a href="" id="hmenu"><strong>News</strong></a>
-    //                <a href="" target="_blank" id="hmenu"><strong>Forum</strong></a>
-    //                <a href="" target="_blank" id="hmenu"><strong>Shop</strong></a>
-    //                <a href="" class="btn rounded-pill">Login</a> ';
-    //            }
-    ?>
 </header>

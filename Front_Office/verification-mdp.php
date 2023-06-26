@@ -7,12 +7,12 @@ if (isset($_POST['email'])) {
         header('location:forgot-mdp.php?message=Invalid Email');
         exit;
     } else {
-        $q = 'SELECT idUser,username,firstname,birthdate FROM User WHERE email = ?';
+        $q = 'SELECT idUser,username,name,birthdate FROM User WHERE email = ?';
         $req = $bdd->prepare($q);
         $req->execute([$_POST['email']]);
         $results = $req->fetchAll();
         if (empty($results)) {
-            header('location: ../Front_Office/forgot-mdp.php?message=Email does not exist !');
+            header('location:forgot-mdp.php?message=Email does not exist !');
             exit;
         } else {
             include("mailTest2.php");

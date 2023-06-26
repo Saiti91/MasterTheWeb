@@ -11,5 +11,5 @@ function ChangeSlide(sens) {
 
 }
 
-setInterval("ChangeSlide(1)", 3000);
+setInterval("ChangeSlide(1)", 5000);
 

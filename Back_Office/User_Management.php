@@ -10,7 +10,7 @@ include '../includes/header_backoffice.php'; ?>
         <div class="row">
             <h1 class="col-4">Users Management</h1>
             <div style="padding-top: 31px" class="offset-7 col-1">
-                <a class="btn btn-default btn-custom rounded-circle" href="add_user.php">+</a>
+
             </div>
         </div>
         <?php
@@ -55,7 +55,7 @@ include '../includes/header_backoffice.php'; ?>
         </form>
 
 
-        <table class="table table-success table-striped">
+        <table class="table table-bordered table-success table-striped">
             <?php
 
             if (empty($_POST['suser'])) {

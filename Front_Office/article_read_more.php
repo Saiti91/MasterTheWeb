@@ -1,15 +1,14 @@
 <?php
 session_start();
-include '../includes/connexion_check.php';
-require_once 'connexion_bdd.php';
+require_once '../includes/connexion_bdd.php';
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $get_id = htmlspecialchars($_GET['id']);
     // Requête pour récupérer l'article avec les informations de l'utilisateur
-    $query = 'SELECT article.*, users.username
-              FROM article
-              INNER JOIN users ON article.user_id = users.id
-              WHERE article.id = ?';
+    $query = 'SELECT Article.*, User.username
+              FROM Article
+              INNER JOIN User ON Artcile.User_id = User.idUser
+              WHERE Article.id = ?';
 
     $article = $bdd->prepare($query);
     $article->execute([$get_id]);
@@ -40,8 +39,28 @@ if ($isAuthor && isset($_POST['delete_article'])) {
     $deleteStmt = $bdd->prepare($deleteQuery);
     $deleteStmt->execute([$get_id]);
     // Rediriger vers la page des articles ou afficher un message de confirmation
-    header('Location:read_article.php');
+    header('Location: read_article.php');
     exit;
+}
+
+// Traitement du like
+if (isset($_POST['user_like_article']) && isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    $articleId = $get_id;
+
+    // Vérifier si l'utilisateur a déjà aimé l'article
+    $checkQuery = 'SELECT id FROM user_like_article WHERE user_id = ? AND article_id = ?';
+    $checkStmt = $bdd->prepare($checkQuery);
+    $checkStmt->execute([$userId, $articleId]);
+
+    if ($checkStmt->rowCount() > 0) {
+        // L'utilisateur a déjà aimé l'article, vous pouvez afficher un message ou effectuer une autre action
+    } else {
+        // Ajouter le like à la base de données
+        $insertQuery = 'INSERT INTO User_like_Article (User_id, Article_id) VALUES (?, ?)';
+        $insertStmt = $bdd->prepare($insertQuery);
+        $insertStmt->execute([$userId, $articleId]);
+    }
 }
 ?>
 
@@ -54,7 +73,7 @@ if ($isAuthor && isset($_POST['delete_article'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="stylef.css">
-    <link rel="stylesheet" type="text/css" href="Style_read_more_article.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/Style_read_more_article.css"/>
     <title>Read Article</title>
 </head>
 <body>
@@ -68,13 +87,36 @@ if ($isAuthor && isset($_POST['delete_article'])) {
         <span><?= $pubdate ?></span>
     </div>
 
-    <?php if ($isAuthor) { ?>
-        <form action="" method="POST">
+    <?php if ($isAuthor) {
+        echo '<form action="" method="POST">
             <input type="hidden" name="delete_article" value="1">
             <input type="submit" value="Delete article"
                    style="background-color: #8E0808; color: white; border:none; border-radius:10px; padding:8px;">
-        </form>
-    <?php } ?>
+        </form>';
+    } ?>
+
+    <?php
+    // Vérifier si l'utilisateur est connecté
+    if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+        $articleId = $get_id;
+
+        // Vérifier si l'utilisateur a déjà aimé l'article
+        $checkQuery = 'SELECT * FROM User_like_Article WHERE User_id = ? AND Article_id = ?';
+        $checkStmt = $bdd->prepare($checkQuery);
+        $checkStmt->execute([$userId, $articleId]);
+
+        if ($checkStmt->rowCount() > 0) {
+            echo '<p>You liked this article.</p>';
+        } else {
+            echo '<form action="" method="POST">
+            <input type="hidden" name="user_like_article" value="1">
+            <input type="submit" value="Like" style="background-color: #008000; color: white; border:none; border-radius:8px; padding:6px 20px;">
+        </form>';
+        }
+    }
+    ?>
+
 </div>
 
 <div class="container mt-5 mb-5 p-5">
@@ -107,7 +149,7 @@ if ($isAuthor && isset($_POST['delete_article'])) {
                         $userId = $_SESSION['user_id'];
                         $articleId = $get_id;
 
-                        $commentInsertQuery = 'INSERT INTO Comment (text, user_id, article_id, date_of_publ) VALUES (?, ?, ?, NOW())';
+                        $commentInsertQuery = 'INSERT INTO Comment (text, User_id, Article_id) VALUES (?, ?, ?)';
                         $commentInsertStmt = $bdd->prepare($commentInsertQuery);
                         $commentInsertStmt->execute([$text, $userId, $articleId]);
 
@@ -120,13 +162,12 @@ if ($isAuthor && isset($_POST['delete_article'])) {
             </div>
         </form>
 
-
         <?php
         // Requête pour récupérer les commentaires associés à l'article
-        $commentsQuery = 'SELECT comment.*, users.username
-                          FROM comment
-                          INNER JOIN users ON comment.user_id = users.id
-                          WHERE comment.article_id = ?';
+        $commentsQuery = 'SELECT Comment.*, User.username
+                          FROM Comment
+                          INNER JOIN User ON Comment.User_id = User.idUser
+                          WHERE Comment.Article_id = ?';
 
         $commentsStmt = $bdd->prepare($commentsQuery);
         $commentsStmt->execute([$get_id]);
@@ -134,14 +175,12 @@ if ($isAuthor && isset($_POST['delete_article'])) {
         while ($comment = $commentsStmt->fetch()) { ?>
             <div class="comment">
                 <span><b><?= $comment['username'] ?></b></span>
-                <span><?= $comment['date_of_publ'] ?></span>
+                <span><?= $comment['date'] ?></span>
                 <p><?= $comment['text'] ?></p>
             </div>
         <?php } ?>
 
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
 
         <?php
         if (isset($message)) {
@@ -158,7 +197,7 @@ if ($isAuthor && isset($_POST['delete_article'])) {
 </div>
 
 <?php
-include('footer.php');
+include('../includes/footer.php');
 ?>
 </body>
 </html>

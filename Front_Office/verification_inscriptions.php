@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\phpMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\phpMailer\src\PHPMailer.php';
-require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\phpMailer\src\SMTP.php';
+require 'C:\MAMP\htdocs\PHPMailer\src\Exception.php';
+require 'C:\MAMP\htdocs\PHPMailer\src\PHPMailer.php';
+require 'C:\MAMP\htdocs\PHPMailer\src\SMTP.php';
 
 if (
     !isset($_POST['email']) || empty($_POST['email']) ||
@@ -62,32 +62,39 @@ if (isset($email) && !empty($email)) {
     setcookie('email', $email, time() + 3600);
 }
 
-include '../includes/connexion_bdd.php';
+try {
+    $bdd = new PDO('mysql:host=localhost;port=8889;dbname=master_theweb', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (Exception $e) {
+    die($e->getMessage());
+}
 
-$q = 'SELECT idUser FROM User WHERE email = ?';
+$q = 'SELECT idUser, username, firstname, birthdate FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$email]);
 $results = $req->fetchAll();
 
 if (!empty($results)) {
-    header('location:inscription.php?message=Email already used !');
+    header('location:inscription.php?message=Email already used!');
     exit;
 }
 
-$q = 'INSERT INTO User (username, firstname, birthdate, email, password, Status) VALUES(?, ?, ?, ?, ?,?)'; // Requete
-$req = $bdd->prepare($q); // Préparation de la requete
+$token = ''; // Valeur par défaut pour le champ 'token'
+
+$q = 'INSERT INTO User (username, firstname, birthdate, email, password, token) VALUES(?, ?, ?, ?, ?, ?)';
+$req = $bdd->prepare($q);
+$hashedPassword = password_hash($mdp, PASSWORD_DEFAULT); // Hachage du mot de passe avec bcrypt
 $results = $req->execute([
     htmlspecialchars($username),
     htmlspecialchars($name),
     htmlspecialchars($date_of_birth),
     htmlspecialchars($email),
-    hash('sha256', $mdp),
-    1
+    $hashedPassword,
+    $token
 ]);
 
 if (!$results) {
-    // rediraction avec message erreur
-    header('location: inscription.php?message=Connexion error !');
+    // Redirection avec un message d'erreur
+    header('location: inscription.php?message=Connection error!');
     exit;
 } else {
     $mail = new PHPMailer(true);
@@ -116,15 +123,15 @@ if (!$results) {
         }
 
         $mail->isHTML(true);
-        $mail->Subject = 'WELCOME TO HOLOMUSIC !';
+        $mail->Subject = 'WELCOME TO HOLOMUSIC!';
         $mail->Body = 'Hi there!<br>
-        Thank you for subscribing .<br>
+        Thank you for subscribing.<br>
         Stay updated with our latest <b>articles, news,</b> and insights about the music industry.';
         $mail->AltBody = 'News';
 
         $mail->send();
 
-        header('location:connexion.php?message=account created successfully !');
+        header('location:connexion.php?message=Account created successfully!');
         exit;
 
     } catch (Exception $e) {
@@ -132,4 +139,5 @@ if (!$results) {
         exit;
     }
 }
+
 ?>

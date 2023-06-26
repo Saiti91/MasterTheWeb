@@ -1,6 +1,6 @@
 <?php
-if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-    header('location: ../Front_Office/index.php');
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    header('location: ../Front_Office/connexion.php');
     exit;
 }
 ?>

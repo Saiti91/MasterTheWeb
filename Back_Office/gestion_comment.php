@@ -1,6 +1,13 @@
 <?php
 session_start();
-include '../includes/connexion_check_admin.php';
+
+// Vérifier si c'est l'admin qui est connecté pour avoir accès à la page
+$isAdmin = true; // Remplacez par logique de vérification de l'administrateur
+
+if (!$isAdmin) {
+    echo "Accès refusé.";
+    exit;
+}
 
 try {
     $bdd = new PDO('mysql:host=localhost;port=8889;dbname=master_theweb', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -11,14 +18,14 @@ if (isset($_GET['recent'])) {
     $threeMonthsAgo = date('Y-m-d', strtotime('-3 months'));
     $query = 'SELECT comment.id, comment.user_id, comment.date_of_publ, comment.article_id, article.title, users.username
               FROM comment 
-              JOIN Article ON comment.article_id = Article.id 
+              JOIN article ON comment.article_id = article.id 
               JOIN users ON comment.user_id = users.id
               WHERE comment.date_of_publ >= "' . $threeMonthsAgo . '" 
               ORDER BY comment.id DESC';
 } else {
     $query = 'SELECT comment.id, comment.user_id, comment.date_of_publ, comment.article_id, article.title, users.username
               FROM comment 
-              JOIN Article ON comment.article_id = Article.id 
+              JOIN article ON comment.article_id = article.id 
               JOIN users ON comment.user_id = users.id
               ORDER BY comment.id DESC';
 }
@@ -50,10 +57,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="Style_gestion_article.css"/>
     <title>Comment Management</title>
 </head>
@@ -75,7 +80,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <tr>
             <th>Id</th>
             <th>User id</th>
-            <th>Username</th>
+			 <th>Username</th>
             <th>Date of Publication</th>
             <th>Article Title</th>
             <th>Action</th>
@@ -89,13 +94,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo isset($row["user_id"]) ? $row["user_id"] : ""; ?></td>
-                    <td><?php echo isset($row["username"]) ? $row["username"] : ""; ?></td>
+					<td><?php echo isset($row["username"]) ? $row["username"] : ""; ?></td>
 
                     <td><?php echo isset($row["date_of_publ"]) ? $row["date_of_publ"] : ""; ?></td>
                     <td><?php echo isset($row["title"]) ? $row["title"] : ""; ?></td>
                     <td>
-                        <a href="article_read_more.php?id=<?php echo $row["article_id"]; ?>" class="btn btn-info">Read
-                            more</a>
+                        <a href="article_read_more.php?id=<?php echo $row["article_id"]; ?>" class="btn btn-info">Read more</a>
                         <a href="gestion_comment.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

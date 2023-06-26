@@ -1,18 +1,17 @@
 <?php
 session_start();
-include '../includes/connexion_check.php';
-require_once 'connexion_bdd.php';
+require_once '../includes/connexion_bdd.php';
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     // Rediriger l'utilisateur s'il n'est pas connecté vers la page de connexion pour qu'il puisse poster son article
     header('Location: connexion.php?message=You must log in to your account in order to post your article!');
     exit;
 }
 
-require 'C:\MAMP\htdocs\PHPMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\PHPMailer.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\SMTP.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\Exception.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\PHPMailer.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -62,12 +61,12 @@ if (isset($_POST['title']) && isset($_POST['body']) && isset($_FILES['image'])) 
         }
 
 
-        $articleInsertQuery = 'INSERT INTO article (title, body, date_of_publ, user_id, category, image ) VALUES (?, ?, NOW(), ?, ?, ? )';
+        $articleInsertQuery = 'INSERT INTO Article (title, body, image,User_id, Category_id ) VALUES (?, ?, ?, ?, ? )';
         $articleInsertStmt = $bdd->prepare($articleInsertQuery);
-        $articleInsertStmt->execute(array($title, $body, $userId, $category, $new_img_name));
+        $articleInsertStmt->execute(array($title, $body, $new_img_name, $userId, $category));
 
         // Récupérer la liste des abonnés à la newsletter
-        $newsletterQuery = 'SELECT email FROM newsletter';
+        $newsletterQuery = 'SELECT User.email FROM Newsletter JOIN User ON User.idUser = Newsletter.User_idUser';
         $newsletterStmt = $bdd->prepare($newsletterQuery);
         $newsletterStmt->execute();
         $subscribers = $newsletterStmt->fetchAll(PDO::FETCH_COLUMN);
@@ -115,26 +114,12 @@ if (isset($_POST['title']) && isset($_POST['body']) && isset($_FILES['image'])) 
 
 ?>
 
+<?php
+$link = "../CSS/Style_article_post.css";
+$titre = "Article Publication";
+include '../includes/header_index.php';
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Publication</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-          crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="Style_article_post.css"/>
-    <link rel="stylesheet" href="stylef.css">
-
-</head>
-
-<body>
+?>
 <div class="article_container">
     <h1 class="d-flex justify-content-between my-4">Create New Topic</h1>
 
@@ -148,12 +133,17 @@ if (isset($_POST['title']) && isset($_POST['body']) && isset($_FILES['image'])) 
         </div>
 
         <div class="form_element my-4">
-            <select name="category" class="form-select custom-select">
-                <option value="Classical">Classical</option>
-                <option value="Country">Country</option>
-                <option value="Pop">Pop</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Rock">Rock</option>
+            <label for="catego" style="color: white">Category</label>
+            <select name="category" id="catego" class="form-select custom-select">
+                <?php
+                $q = 'Select * From Category';
+                $req = $bdd->prepare($q);
+                $req->execute([]);
+                $donnee = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($donnee as $Index => $Value) {
+                    echo '<option value="' . $donnee[$Value]['id'] . '">' . $donnee[$Value]['name'] . '</option>';
+                }
+                ?>
             </select>
         </div>
 
@@ -180,7 +170,7 @@ if (isset($_GET['error'])) {
 }
 ?>
 
-?>
+
 
 <?php
 if (isset($message)) {
@@ -190,9 +180,7 @@ if (isset($message)) {
 ?>
 
 <?php
-include('footer.php');
+include('../includes/footer.php');
 ?>
-
 </body>
-
 </html>

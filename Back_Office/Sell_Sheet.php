@@ -90,7 +90,7 @@ include '../includes/header_backoffice.php' ?>
         </div>
 
 
-        <table class="table table-success table-striped">
+        <table class="table table-bordered table-success table-striped">
             <?php
 
             if (empty($_POST['suser'])) {

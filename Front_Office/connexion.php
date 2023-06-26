@@ -1,6 +1,7 @@
 <?php
-session_start();
-include '../includes/connexion_check.php'
+if (isset($_SESSION['email']) || !empty($_SESSION['email'])) {
+    header('location: ../Front_Office/index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,6 @@ include '../includes/connexion_check.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../CSS/Style_connx.css"/>
     <title>Sign in</title>
-
-
 </head>
 <body>
 <main>
@@ -35,20 +34,31 @@ include '../includes/connexion_check.php'
                         }
 
                         ?>
+
                         <input type="submit" value="login" class="sign-btn">
+
+
                         <p class="text-help">
                             Forgotten your password ?
                             <a href="forgot-mdp.php">Get help</a> signing in
                         </p>
+
+
                     </div>
                 </form>
+
             </div>
+
+
             <div class="sign-up">
                 <h1>New here ?</h1>
                 <a href="inscription.php" class="sign-up-btn">Sign up</a>
             </div>
+
+
         </div>
     </div>
+
 </main>
 </body>
 </html>

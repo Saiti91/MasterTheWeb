@@ -1,27 +1,16 @@
 <?php
 session_start();
 include '../includes/connexion_check.php';
-require_once 'connexion_bdd.php';
+$link = '../CSS/Style_read_article.css';
+$titre = 'Articles';
+include '../includes/header_index.php';
+require_once '../includes/connexion_bdd.php';
 
-$articles = $bdd->query('SELECT article.*, users.username
-          FROM article
-          INNER JOIN users ON article.user_id = users.id
-          ORDER BY article.date_of_publ DESC, article.category');
+$articles = $bdd->query('SELECT Article.*, User.username
+          FROM Article
+          INNER JOIN User ON Article.User_id = User.idUser
+          ORDER BY Article.date_of_publ DESC');
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="stylef.css">
-    <link rel="stylesheet" type="text/css" href="Style_read_article.css"/>
-    <title>Read Article</title>
-</head>
-<body>
-
 <div class="container mt-4">
     <div class="row">
 
@@ -179,17 +168,8 @@ $articles = $bdd->query('SELECT article.*, users.username
                 <?php } ?>
             </div>
         </section>
-
-        <?php
-        include('footer.php');
-        ?>
-
-
-        3
     </div>
+    <?php
+    include('../includes/footer.php');
+    ?>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>

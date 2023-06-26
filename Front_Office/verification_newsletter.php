@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_POST['email']) || empty($_POST['email'])) {
-    header('Location: inscriptionnewsletter.php?message=You must enter your email!');
+    header('Location: inscription_newsletter.php?message=You must enter your email!');
     exit;
 }
 
@@ -15,20 +15,19 @@ include '../includes/connexion_bdd.php';
 $q = 'SELECT * FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
-$results = $req->fetchAll();
+$donnee = $req->fetchAll();
 
-if (!$results) {
+if (!$donnee) {
     // L'utilisateur n'est pas encore abonné
     // redirection avec un message d'erreur
-    header('Location: ../Front_Office/inscriptionnewsletter.php?message=Create an account to receive our newsletters!');
+    header('Location: ../Front_Office/inscription_newsletter.php?message=Create an account to receive our newsletters!');
     exit;
 } else {
 
 
-    $q = 'INSERT INTO Newsletter (email, Inscription_date) VALUES(?, NOW())'; // Requête
+    $q = 'INSERT INTO Newsletter (User_idUser) VALUES(?)'; // Requête
     $req = $bdd->prepare($q); // Préparation de la requête
-    $results = $req->execute([
-        htmlspecialchars($_POST['email'])
+    $results = $req->execute([$donnee[0]['idUser']
     ]);
 }
 
@@ -55,9 +54,9 @@ try {
 
     $mail->setFrom('derradji.ines@bessah.com', 'HOLOMUSIC');
 
-    $q = 'SELECT * FROM Newsletter WHERE email = ?';
+    $q = 'SELECT User.email FROM Newsletter JOIN User ON User.idUser = Newsletter.User_idUser';
     $req = $bdd->prepare($q);
-    $req->execute([$_POST['email']]);
+    $req->execute([]);
     $results = $req->fetchAll();
 
     foreach ($results as $row) {
@@ -77,7 +76,7 @@ try {
     header('Location: ../Front_Office/index.php?success=1');
     exit;
 } catch (Exception $e) {
-    header('Location: ../Front_Office/inscriptionnewsletter.php?success=2');
+    header('Location: ../Front_Office/inscription_newsletter.php?success=2');
     exit;
 }
 

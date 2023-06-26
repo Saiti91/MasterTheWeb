@@ -1,75 +1,51 @@
 <?php
-
 session_start();
 
 if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['mdp']) || empty($_POST['mdp'])) {
-    header('location: ../Front_Office/connexion.php?message=You must fill in both fields');
+    header('location:connexion.php?message=You must fill in both fields');
     exit;
 }
 
+$email = trim($_POST['email']);
+$email = htmlspecialchars($email);
 
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    header('location: ../Front_Office/connexion.php?message=Invalid Email');
+$mdp = trim($_POST['mdp']);
+$mdp = htmlspecialchars($mdp);
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header('location:connexion.php?message=Invalid Email');
     exit;
 }
 
 include '../includes/connexion_bdd.php';
 
-$q = 'SELECT email,Status FROM User WHERE email = ? AND password = ?';
+$q = 'SELECT idUser, username, password,Status FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
-$email = ($_POST['email']);
-$mdp = hash('sha256', ($_POST['mdp']));
-$req->execute(array($email, $mdp));
-$results = $req->fetchAll(PDO::FETCH_ASSOC);
+$req->execute([$email]);
+$result = $req->fetch();
 
-if (empty($results)) {
+if (empty($result) || !password_verify($mdp, $result['password'])) {
+    writeLogLine(false, $email);
     header('location:connexion.php?message=Incorrect identifier');
     exit;
 } else {
-
-    // Récupérer l'ID de l'utilisateur et le nom !
-    $_SESSION['email'] = $results[0]['email'];
-    $_SESSION['Status'] = $results[0]['Status'];
-
-    header('location: ../Front_Office/index.php');
+    $_SESSION['email'] = $email;
+    $_SESSION['user_id'] = $result['idUser'];
+    $_SESSION['Status'] = $result['Status'];
+    writeLogLine(true, $email);
+    header('location:index.php');
     exit;
 }
-?>
 
-
-// les donnees du formulaire arrivent des la $_ POST
-// si l'email n'est pas vide on enregistre l'email dans un cookie avec la fonction setcookie()
-//  3 faire une rediraction dans le cas ou password ou email empty  affiche message
-// redirection vers page connexion si erreur et message erreur (dans url connexion.php?.message=erreur)
-
-
-// function writeLogLine($success, $email){
-// $log=fopen('log.txt', 'a+');
-// $line=date('Y/m/d - H:i;s').'Tentative de connexion '.($success? 'réussi' : 'echoué').'reussie de :'.$_POST['email']."/n";
-// fputs($log, $line);
-// fclose($log);
+function writeLogLine($success, $email)
+{
+    $log = fopen('log.txt', 'a+');
+    $line = date('Y/m/d - H:i:s') . ' - Tentative de connexion ' . ($success ? 'réussie' : 'échouée') . $email . "\n";
+    fputs($log, $line);
+    fclose($log);
 }
-// CODE COOKIE if (isset($_POST['email'])&& !empty($_POST['email'])){
-// setcookie('email',$_POST['email'],time()+ 24*3600);
-// }
-// if (isset($_POST['email'])&& !empty($_POST['email'])){
-// setcookie('email',$_POST['email'],time()+ 24*3600);
-// }
-	
-	
-	
-	
 
-
-
-  
-
-
-	
-	
-	
-	
-	
-	
-	
-	
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+    setcookie('email', $_POST['email'], time() + 24 * 3600);
+}
+?>
