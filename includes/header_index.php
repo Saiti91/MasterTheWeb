@@ -38,6 +38,7 @@
                     echo '<a class=" nav-link px-3  ' . ($titre == 'Acceuil' ? 'active' : '') . '" href="../Front_Office/index.php">Home</a>
                     <a class=" nav-link px-3  ' . ($titre == 'Profil' ? 'active' : '') . '" href="../Front_Office/profil.php">Profil</a>
                     <a class=" nav-link px-3  ' . ($titre == 'Articles' ? 'active' : '') . '" href="../Front_Office/read_article.php">Articles</a>
+                    <a class=" nav-link px-3  ' . ($titre == 'Evènements' ? 'active' : '') . '" href="#">Evènements</a>
                     <a class=" nav-link px-3  ' . ($titre == 'Shop' ? 'active' : '') . '" href="#">Shop</a>
                         <a class="btn btn-danger px-3"';
                     if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
