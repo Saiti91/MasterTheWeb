@@ -62,11 +62,7 @@ if (isset($email) && !empty($email)) {
     setcookie('email', $email, time() + 3600);
 }
 
-try {
-    $bdd = new PDO('mysql:host=localhost;port=8889;dbname=master_theweb', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-} catch (Exception $e) {
-    die($e->getMessage());
-}
+include '../includes/connexion_bdd.php';
 
 $q = 'SELECT idUser, username, firstname, birthdate FROM User WHERE email = ?';
 $req = $bdd->prepare($q);
