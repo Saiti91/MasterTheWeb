@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:\MAMP\htdocs\PHPMailer\src\Exception.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\PHPMailer.php';
-require 'C:\MAMP\htdocs\PHPMailer\src\SMTP.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\Exception.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\PHPMailer.php';
+require 'C:\MAMP\htdocs\Projet Annuel\MasterTheWeb\PHP_Mailer\src\SMTP.php';
 
 if (
     !isset($_POST['email']) || empty($_POST['email']) ||
