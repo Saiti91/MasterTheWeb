@@ -5,11 +5,6 @@ $link = '';
 $titre = 'Profil';
 include '../includes/header_index.php';
 include '../includes/connexion_bdd.php';
-//connexion check
-//if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-//    header('location: connexion.php');
-//    exit;
-//}
 ?>
 
     <div class="container">
@@ -17,7 +12,7 @@ include '../includes/connexion_bdd.php';
             <div class="col-6"></div>
             <div class="col-6">
                 <!--avatar-->
-                
+
                 <!--Ligne haute-->
                 <div>
                     <h3 class="">Cheveux</h3>
