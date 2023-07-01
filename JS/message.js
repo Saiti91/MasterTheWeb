@@ -1,42 +1,40 @@
-document.getElementById('sendButton').addEventListener('click', sendMessage);
-
-function sendMessage() {
-    const messageInput = document.getElementById('messageInput');
-    const message = messageInput.value;
-
-    fetch('/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({message})
+let sessionId;
+fetch('get_session_data.php')
+    .then(function (response) {
+        return response.json();
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Réponse du serveur :', data);
-        })
-        .catch(error => {
-            console.error('Erreur lors de l\'envoi du message:', error);
-        });
-    messageInput.value = '';
-}
+    .then(function (data) {
+        sessionId = data;
+        return fetch('messagerie_back.php');
+    })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        displayConversation(data, sessionId);
+    })
+    .catch(function (error) {
+        console.log('Une erreur s\'est produite :', error);
+    });
 
-setInterval(getMessages, 1000);
+function displayConversation(users, sessionId) {
+    let tableBody = document.querySelector('#searchResultsConversation');
+    tableBody.innerHTML = '';
 
-function getMessages() {
-    fetch('/chat')
-        .then(response => response.json())
-        .then(data => {
-            const chatbox = document.getElementById('chatbox');
-            chatbox.innerHTML = ''; // Effacer les anciens messages
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+        let row = document.createElement('tr');
+        let divisions = Object.values(user);
+        let cell = document.createElement('td');
+        if (divisions[0] === sessionId) {
+            cell.textContent = divisions[3];
+            row.appendChild(cell);
+        }
+        if (divisions[2] === sessionId) {
+            cell.textContent = divisions[1];
+            row.appendChild(cell);
+        }
 
-            data.messages.forEach(message => {
-                const messageElement = document.createElement('p');
-                messageElement.textContent = message;
-                chatbox.appendChild(messageElement);
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération des messages:', error);
-        });
+        tableBody.appendChild(row);
+    }
 }

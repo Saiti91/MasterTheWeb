@@ -16,7 +16,7 @@ document.getElementById('suser').addEventListener('input', function () {
             return response.json();
         })
         .then(function (data) {
-            displaySearchResults(data, searchValue); // Appel de la fonction displaySearchResults avec la valeur de recherche mise à jour
+            displaySearchResults(data, searchValue);
         })
         .catch(function (error) {
             console.log('Une erreur s\'est produite:', error);
