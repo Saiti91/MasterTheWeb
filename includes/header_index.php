@@ -10,7 +10,7 @@
     <script src="<?php echo $script ?>" type="text/javascript" defer></script>
 
     <link rel="stylesheet" type="text/css" href="../CSS/style_index.css"/>
-    <link rel="stylesheet" type="text/css" href="../CSS/style_footer.css.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/style_footer.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo $link ?>"/>
 </head>
 <body>

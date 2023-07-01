@@ -2,73 +2,86 @@
 session_start();
 include '../includes/connexion_check.php';
 $link = '';
+$script = "../JS/profil_avatar.js";
 $titre = 'Profil';
 include '../includes/header_index.php';
 include '../includes/connexion_bdd.php';
 ?>
 
     <div class="container">
-        <div class="row">
-            <div class="col-6"></div>
+        <div class="row pt-5">
             <div class="col-6">
                 <!--avatar-->
+                <img id="avatarImage" class="col-12 avatar" src="../asset/assetAvatar/visage1.png" height="500px"
+                     alt="">
+
+            </div>
+            <div class="col-6" id="avatar">
+
 
                 <!--Ligne haute-->
                 <div>
                     <h3 class="">Cheveux</h3>
-                    <img class=" col-1" src="../asset/assetAvatar/cheveux1.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/cheveux2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/cheveux3.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/cheveux4.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/cheveux5.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/cheveux6.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux1.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux2.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux3.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux4.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux5.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable cheveux col-1" src="../asset/assetAvatar/cheveux6.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
                 </div>
 
-                <!--Ligne 1-->
-                <!--moustache-->
-                <div class="pt-1">
-                    <h3 class="">Moustaches</h3>
-                    <img class=" col-1" src="../asset/assetAvatar/moustache1.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/moustache2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                </div>
                 <div class="pt-1">
                     <h3 class="">Visages</h3>
-                    <img class=" col-1" src="../asset/assetAvatar/visage1.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/visage2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable visage col-1" src="../asset/assetAvatar/visage1.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable visage col-1" src="../asset/assetAvatar/visage2.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
                 </div>
                 <div class="pt-1">
                     <h3 class="">Barbes</h3>
-                    <img class=" col-1" src="../asset/assetAvatar/barbe1.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class="col-1" src="../asset/assetAvatar/barbe2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable barbes col-1" src="../asset/assetAvatar/barbe1.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable barbes col-1" src="../asset/assetAvatar/barbe2.png"
+                         width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
                     <!--visage-->
                 </div>
                 <div class="pt-1">
-                    <h3 class="">Bouches</h3>
-                    <img class="  col-1" src="../asset/assetAvatar/bouche1.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class=" col-1" src="../asset/assetAvatar/bouche2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                </div>
-                <div class="pt-1">
                     <h3 class="">Yeux</h3>
-                    <img class="  col-1" src="../asset/assetAvatar/oeil4.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class=" col-1" src="../asset/assetAvatar/oeil2.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
-                    <img class=" col-1" src="../asset/assetAvatar/oeil3.png" width="50px" height="50px"
-                         style="border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable yeux col-1" src="../asset/assetAvatar/oeil4.png" width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable yeux col-1" src="../asset/assetAvatar/oeil2.png" width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
+                    <img draggable="true" class="draggable yeux col-1" src="../asset/assetAvatar/oeil3.png" width="50px"
+                         height="50px"
+                         style="background-color:white; border: white solid 1px" alt="">
                 </div>
             </div>
         </div>
@@ -139,8 +152,11 @@ foreach ($donnee as $item => $value) {
        
         
             </div>
-    </form>';
+    </form>
+    </div>';
+
 }
 
 
+include '../includes/footer.php';
 ?>
