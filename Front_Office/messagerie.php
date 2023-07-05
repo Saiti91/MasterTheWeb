@@ -1,7 +1,8 @@
 <?php
 session_start();
 $link = "";
-$script = "../JS/message.js";
+$script = "../JS/ConversationSearch.js";
+$script2 = "../JS/displayMessage.js";
 $titre = "Messagerie";
 include '../includes/header_index.php';
 include '../includes/connexion_check.php';
@@ -16,57 +17,49 @@ if (isset($_POST['message']) && !empty($_POST['message'])) {
 }
 ?>
 
-    <div class="container border border-secondary mt-5">
-        <div style="height: 500px" class="row">
-            <div class="ps-5 p-3 col-4 border-end" id="conversations" style="overflow-y: scroll; overflow-x: hidden">
+<div class="container border border-secondary mt-5">
+    <div style="height: 500px" class="row">
+        <div class="ps-5 p-3 col-4 border-end" id="conversations" style="overflow-y: scroll; overflow-x: hidden">
+            <table class="table table-striped-columns text-center">
+                <thead>
+                <div class="row border-bottom pb-2  me-3">
+                    <h2 class=" col-10 ">Conversation</h2>
+                    <a class="col-1 btn btn-default btn-custom rounded-circle" href="#">+</a>
+                </div>
+                </thead>
+                <tbody id="searchResultsConversation">
+                <form action="">
+
+                </form>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-8 " id="messages">
+            <div style="height: 76%; overflow-y: scroll">
                 <table class="table table-striped-columns text-center">
-                    <thead>
-                    <div class="row border-bottom pb-2  me-3">
-                        <h2 class=" col-10 ">Conversation</h2>
-                        <a class="col-1 btn btn-default btn-custom rounded-circle" href="#">+</a>
-                    </div>
+                    <thead id="searchResultsConversationHead" s>
+
                     </thead>
-                    <tbody id="searchResultsConversation">
-                    <tr>
-                        <td><a href="">
-                                <div class="row pt-3">
-                                    <div class="col-md-2 text-center">
-                                        <!--exemple de ligne de conversation-->
-                                        <!--image de profil-->
-                                    </div>
-                                    <div class="col-md-7 ">
-                                        <p class="text-center conversationName"></p>
-                                    </div>
-                                </div>
-                            </a></td>
-                    </tr>
+                    <tbody id="searchResultsMessage">
+
                     </tbody>
                 </table>
-                <!-- fin exemple de ligne de conversation-->
             </div>
-            <div class="col-8 " id="messages">
-                <div style="height: 76%">
-                    <?php
-
-
-                    ?>
+            <div class="row p-2 g-3 align-items-center border-top">
+                <div class="col-10 ">
+                    <form id="myForm">
+                        <div class="input-group">
+                            <input type="text" id="messageInput" name="message"
+                                   placeholder="Écrivez votre message ici..."
+                                   required>
+                        </div>
                 </div>
-                <form method="post" action="" class="align-bottom">
-                    <div class="row p-2 g-3 align-items-center border-top">
-                        <div class="col-10 ">
-                            <div class="input-group">
-                                <textarea class="form-control" name="" id="messageInput"
-                                          rows="3" placeholder="Saisissez votre message"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <button id="sendButton" class="btn btn-danger">Envoyer</button>
-                        </div>
-                    </div>
-                </form>
+                <div class="col-2">
+                    <button class="btn btn-danger" type="submit">Envoye</button>
+                    </form>
+
+                </div>
             </div>
         </div>
     </div>
-<?php
-//include '../includes/footer.php';
-?>
+</div>
