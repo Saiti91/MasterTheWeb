@@ -6,9 +6,6 @@ const progressSteps = document.querySelectorAll(".progress-step");
 
 
 let formStepsNum = 0;
-/*aller d'une etape à une autre */
-
-
 nextBtns.forEach(btn => {
     btn.addEventListener("click", () => {
         formStepsNum++;
