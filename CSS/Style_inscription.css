@@ -78,22 +78,13 @@
                  width:calc(100% - 4.1rem);
                  height:calc(100% - 4.1rem); 
                  
-                 
-                /*calculer la hauteur et la largeur grace à la fonction calc 100% de la largeur/hauteur (100%*hauteur/largeur-4.1rem )*/
-                /* 4.1 rem est calculé par rapport à la taille de la racine qui par defaut est de 16px */
-                /* 4.1rem equivaut à environ 65.6px 4.1rem*16px=65.6px*100 410% de la taille de la racine */
-                 
+              
                  
                  top: 50%;
                  left: 50%;
                  transform: translate(-50%,-50%);
                  
-                 /* top:50% l'élement sera positionné à 50% de la hauteur de la box en partant du haut*/
-                 /* left: 50% signifie que l'élément sera positionné à 50% de la largeur de son conteneur en partant de la gauche*/
-                 /*transforme: translate(-50%,-50%) cette propriété m'a permis de déplacer l'élement de -50 de sa propre largeur*/
-                 /*vers la gauche et 50 de sa hauteur vers le haut se qui m'a permis de corriger le positionneemnt de l'element*/
-                 /* centré horizontelment et verticalment dans la box*/
-                 
+               
                 
                }
               
@@ -243,36 +234,33 @@
               .form-step{
               display: none;
               }
-              /*cacher les autre et laisser la premiére active*/
+           
               
               .form-step-active{
                   display:block;
               }
               
-              /*barre de progression*/
+            
               .progress-bar{
                 position: relative;  
                 display: flex;
                 justify-content:space-between;
                 counter-reset: step;
-                /*reinitialisation du compteur*/
+             
                 
               }
               
               .progress-bar::before, .progress{
                   content: "";
-                  /*ajouter la barre verticla qui semble relier chaque bouton rouge*/
+               
                   position: absolute;
                   top: 50%;
                   transform: translateY(-50%);
-                  /*translation verticale pour le centrer verticalment au milieu de la barre de recherche*/
                   height: 4px;
                   width: 100%;
                   background-color: #8E0808;
-                  /*::before pseudo element*/
-                  /*conetent:"" contenue vide */
                   z-index:-1;
-                  /*z-index pour determiner qui est prioritére en cas de chevauchement */
+        
                  
               }
               
@@ -283,7 +271,6 @@
              
              .progress-step{
                  width: 2.1875rem;
-                 /* calcule de 3.5 px*/
                  height: 2.1875rem;
                  background-color:#8E0808;
                  border-radius: 50%;
@@ -297,7 +284,6 @@
               .progress-step::before{
                counter-increment: step;
                content: counter(step);
-               /*ajouter des chiffre qui s'auto incremente au compter nome step*/
               }
               
               .progress-step-active {
@@ -367,7 +353,6 @@
                 display: flex;
                 justify-content:space-between;
                 counter-reset: step;
-                /*reinitialisation du compteur*/
                 margin:50px;
                 
               }
