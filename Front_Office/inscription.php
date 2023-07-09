@@ -20,15 +20,13 @@
                     <h1>Sign up</h1>
                 </div>
 
-                <!-- la barre de progress_bar -->
-                <!-- sera positioné de maniére absolu par rapport à son parent  donc h1-->
                 <div class="progress-bar">
 
                     <div class="progress" id="progress"></div>
-                    <!--passer d'une etape a une autre -->
+                   
 
                     <div class="progress-step progress-step-active"></div>
-                    <!--montrer que la barre de progression est active -->
+                  
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
                 </div>
